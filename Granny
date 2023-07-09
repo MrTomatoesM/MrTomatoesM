@@ -153,6 +153,7 @@ while task.wait() do -- ESP Loop
 
 		end
 		if TrapsESP == true then
+		if workspace.Map:FindFirstChild("Traps") then
 			for i, trap in pairs(workspace.Map.Traps:GetChildren()) do -- Traps ESP
 			if trap:FindFirstChild("Base") then
 				if not trap:FindFirstChild("Highlight") then
@@ -184,6 +185,7 @@ while task.wait() do -- ESP Loop
 					NameStroke.Thickness = 3
 				end
 				end
+			end
 			end
 
 		else
