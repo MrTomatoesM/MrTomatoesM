@@ -9,6 +9,7 @@ EnemyESP = true						InteractsESP = false
 ----->> Do not edit below this line unless you know what you're doing <<-----
 
 while task.wait() do -- ESP Loop
+	if workspace:FindFirstChild("Map") then
 	
 	local map = ""
 
@@ -40,6 +41,7 @@ while task.wait() do -- ESP Loop
 		if KeyESP == true then
 			for i, key in pairs(workspace.Map[map].Tools.Map:GetChildren()) do -- Key ESP
 				if key.Name:find("key") then
+				if key:FindFirstChild("Handle") then
 					if not key:FindFirstChild("Highlight") then
 						local Highlight = Instance.new("Highlight")
 						local Billboard = Instance.new("BillboardGui")
@@ -68,6 +70,7 @@ while task.wait() do -- ESP Loop
 						NameStroke.Parent = Name
 						NameStroke.Thickness = 3
 					end
+					end
 				end
 			end
 
@@ -85,6 +88,7 @@ while task.wait() do -- ESP Loop
 		if ToolESP == true then
 			for i, tool in pairs(workspace.Map[map].Tools.Map:GetChildren()) do -- Tool ESP
 				if not tool.Name:find("key") then
+				if tool:FindFirstChild("Handle") then
 					if not tool:FindFirstChild("Highlight") then
 						local Highlight = Instance.new("Highlight")
 						local Billboard = Instance.new("BillboardGui")
@@ -112,6 +116,7 @@ while task.wait() do -- ESP Loop
 
 						NameStroke.Parent = Name
 						NameStroke.Thickness = 3
+					end
 					end
 				end
 			end
@@ -149,6 +154,7 @@ while task.wait() do -- ESP Loop
 		end
 		if TrapsESP == true then
 			for i, trap in pairs(workspace.Map.Traps:GetChildren()) do -- Traps ESP
+			if trap:FindFirstChild("Base") then
 				if not trap:FindFirstChild("Highlight") then
 					local Highlight = Instance.new("Highlight")
 					local Billboard = Instance.new("BillboardGui")
@@ -176,6 +182,7 @@ while task.wait() do -- ESP Loop
 
 					NameStroke.Parent = Name
 					NameStroke.Thickness = 3
+				end
 				end
 			end
 
@@ -231,6 +238,7 @@ while task.wait() do -- ESP Loop
 		end	
 		if PlayerESP == true then
 			for i, player in pairs(workspace.Map.Players:GetChildren()) do -- Player ESP
+			if player:FindFirstChild("HumanoidRootPart") then
 					if not player:FindFirstChild("Highlight") then
 						local Highlight = Instance.new("Highlight")
 						local Billboard = Instance.new("BillboardGui")
@@ -257,6 +265,7 @@ while task.wait() do -- ESP Loop
 
 						NameStroke.Parent = Name
 						NameStroke.Thickness = 3						
+					end
 					end
 				end
 
@@ -312,5 +321,6 @@ while task.wait() do -- ESP Loop
 			end
 
 		end
+	end
 	end
 end
