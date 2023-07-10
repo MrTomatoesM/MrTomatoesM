@@ -3,7 +3,7 @@
 KeyESP = true						EnemyESP = true
 ToolESP = true						PlayerESP = true
 TrapsESP = true						ExitsESP = true				
-EnemyESP = true						InteractsESP = false
+EnemyESP = true						InteractsESP = true
 
 -------------------------------->> Code <<--------------------------------
 ----->> Do not edit below this line unless you know what you're doing <<-----
@@ -199,6 +199,7 @@ while task.wait() do -- ESP Loop
 
 		end
 		if EnemyESP == true then
+		if workspace.Map:FindFirstChild("Players") then
 			if workspace.Map.Players:FindFirstChild("Enemy") then -- Enemy ESP
 				if not workspace.Map.Players.Enemy:FindFirstChild("Highlight") then
 					local Highlight = Instance.new("Highlight")
@@ -229,6 +230,7 @@ while task.wait() do -- ESP Loop
 					NameStroke.Thickness = 3
 				end
 			end
+			end
 
 		else
 
@@ -239,6 +241,7 @@ while task.wait() do -- ESP Loop
 			end		
 		end	
 		if PlayerESP == true then
+		if workspace.Map:FindFirstChild("Players") then
 			for i, player in pairs(workspace.Map.Players:GetChildren()) do -- Player ESP
 			if player:FindFirstChild("HumanoidRootPart") then
 					if not player:FindFirstChild("Highlight") then
@@ -270,6 +273,7 @@ while task.wait() do -- ESP Loop
 					end
 					end
 				end
+				end
 
 		else
 
@@ -281,7 +285,7 @@ while task.wait() do -- ESP Loop
 				end			
 			end		
 		end	
-		if TrapsESP == true then
+		if ExitsESP == true then
 		if workspace.Map[map]:FindFirstChild("WinPath") then
 			for i, exit in pairs(workspace.Map[map].WinPath:GetChildren()) do -- Exits ESP
 				if not exit:FindFirstChild("Highlight") then
