@@ -39,6 +39,7 @@ while task.wait() do -- ESP Loop
 	
 	if workspace.Map:FindFirstChild(map) then
 		if KeyESP == true then
+		if workspace.Map[map]:FindFirstChild("Tools") then
 			for i, key in pairs(workspace.Map[map].Tools.Map:GetChildren()) do -- Key ESP
 				if key.Name:find("key") then
 				if key:FindFirstChild("Handle") then
@@ -72,6 +73,7 @@ while task.wait() do -- ESP Loop
 					end
 					end
 				end
+			end
 			end
 
 		else
