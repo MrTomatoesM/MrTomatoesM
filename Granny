@@ -282,6 +282,7 @@ while task.wait() do -- ESP Loop
 			end		
 		end	
 		if TrapsESP == true then
+		if workspace.Map[map]:FindFirstChild("WinPath") then
 			for i, exit in pairs(workspace.Map[map].WinPath:GetChildren()) do -- Exits ESP
 				if not exit:FindFirstChild("Highlight") then
 					local Highlight = Instance.new("Highlight")
@@ -311,6 +312,7 @@ while task.wait() do -- ESP Loop
 					NameStroke.Parent = Name
 					NameStroke.Thickness = 3
 				end
+			end
 			end
 
 		else
