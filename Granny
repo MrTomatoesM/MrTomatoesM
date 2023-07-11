@@ -137,6 +137,7 @@ while task.wait() do -- ESP Loop
 			end
 		end
 		if InteractsESP == true then
+		if workspace.Map[map]:FindFirstChild("Interacts") then
 			for i, interact in pairs(workspace.Map[map].Interacts:GetChildren()) do -- Interacts ESP
 				if not interact:FindFirstChild("Highlight") then
 					local Highlight = Instance.new("Highlight")
@@ -145,6 +146,7 @@ while task.wait() do -- ESP Loop
 					Highlight.OutlineTransparency = 0.9
 					Highlight.Parent = interact
 				end
+			end
 			end
 
 		else
