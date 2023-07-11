@@ -88,6 +88,7 @@ while task.wait() do -- ESP Loop
 			end
 		end
 		if ToolESP == true then
+		if workspace.Map[map]:FindFirstChild("Tools") then
 			for i, tool in pairs(workspace.Map[map].Tools.Map:GetChildren()) do -- Tool ESP
 				if not tool.Name:find("key") then
 				if tool:FindFirstChild("Handle") then
@@ -121,6 +122,7 @@ while task.wait() do -- ESP Loop
 					end
 					end
 				end
+			end
 			end
 
 		else
