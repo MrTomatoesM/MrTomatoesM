@@ -8,8 +8,8 @@ EnemyESP = true						InteractsESP = false
 -------------------------------->> Code <<--------------------------------
 ----->> Do not edit below this line unless you know what you're doing <<-----
 
-while task.wait() do -- ESP Loop
-	if workspace:FindFirstChild("Map") then
+while workspace:FindFirstChild("Map") do -- ESP Loop
+task.wait()
 	
 	local map = ""
 
@@ -86,6 +86,7 @@ while task.wait() do -- ESP Loop
 					end
 				end
 			end
+		end
 		end
 		if ToolESP == true then
 		if workspace.Map[map]:FindFirstChild("Tools") then
@@ -330,8 +331,6 @@ while task.wait() do -- ESP Loop
 					exit.Base.BillboardGui:Destroy()
 				end
 			end
-			end
 		end
-	end
 	end
 end
