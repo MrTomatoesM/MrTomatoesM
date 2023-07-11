@@ -87,7 +87,7 @@ task.wait()
 				end
 			end
 		end
-		end
+		
 		if ToolESP == true then
 		if workspace.Map[map]:FindFirstChild("Tools") then
 			for i, tool in pairs(workspace.Map[map].Tools.Map:GetChildren()) do -- Tool ESP
@@ -332,5 +332,6 @@ task.wait()
 				end
 			end
 		end
+	end
 	end
 end
