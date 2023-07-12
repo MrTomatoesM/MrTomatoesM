@@ -8,9 +8,10 @@ EnemyESP = true						InteractsESP = false
 -------------------------------->> Code <<--------------------------------
 ----->> Do not edit below this line unless you know what you're doing <<-----
 
-while workspace:FindFirstChild("Map") do -- ESP Loop
-task.wait()
-	
+while task.wait() do -- ESP Loop
+
+if workspace:FindFirstChild("Map") then
+
 	local map = ""
 
 	local function updateMap()
@@ -332,6 +333,7 @@ task.wait()
 				end
 			end
 		end
+	end
 	end
 	end
 end
