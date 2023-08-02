@@ -78,15 +78,19 @@ if workspace:FindFirstChild("Map") then
 			end
 
 		else
-
+		
+		if workspace.Map[map]:FindFirstChild("Tools") then
 			for i, key in pairs(workspace.Map[map].Tools.Map:GetChildren()) do
 				if key:FindFirstChild("Highlight") then
 					if key.Name:find("key") then
+					if key:FindFirstChild("Handle") then
 						key.Highlight:Destroy()
 						key.Handle.BillboardGui:Destroy()
 					end
+					end
 				end
 			end
+		end
 		end
 		
 		if ToolESP == true then
@@ -125,19 +129,24 @@ if workspace:FindFirstChild("Map") then
 					end
 				end
 			end
+			end
 
 		else
-
+		
+		if workspace.Map[map]:FindFirstChild("Tools") then
 			for i, tool in pairs(workspace.Map[map].Tools.Map:GetChildren()) do
 				if tool:FindFirstChild("Highlight") then
 					if not tool.Name:find("key") then
+					if tool:FindFirstChild("Handle") then
 						tool.Highlight:Destroy()
 						tool.Handle.BillboardGui:Destroy()
+						end
 					end
 				end
 			end
-			end
 		end
+		end
+		
 		if InteractsESP == true then
 		if workspace.Map[map]:FindFirstChild("Interacts") then
 			for i, interact in pairs(workspace.Map[map].Interacts:GetChildren()) do -- Interacts ESP
@@ -149,16 +158,19 @@ if workspace:FindFirstChild("Map") then
 					Highlight.Parent = interact
 				end
 			end
+			end
 
 		else
-
+		
+		if workspace.Map[map]:FindFirstChild("Interacts") then
 			for i, interact in pairs(workspace.Map[map].Interacts:GetChildren()) do
 				if interact:FindFirstChild("Highlight") then
 					interact.Highlight:Destroy()
 				end
 			end
-			end
 		end
+		end
+		
 		if TrapsESP == true then
 		if workspace.Map:FindFirstChild("Traps") then
 			for i, trap in pairs(workspace.Map.Traps:GetChildren()) do -- Traps ESP
@@ -193,17 +205,22 @@ if workspace:FindFirstChild("Map") then
 				end
 				end
 			end
+			end
 
 		else
-
+		
+		if workspace.Map:FindFirstChild("Traps") then
 			for i, trap in pairs(workspace.Map.Traps:GetChildren()) do
+			if trap:FindFirstChild("Base") then
 				if trap:FindFirstChild("Highlight") then
 					trap.Highlight:Destroy()
 					trap.Base.BillboardGui:Destroy()
 				end
-			end
+				end
 			end
 		end
+		end
+		
 		if EnemyESP == true then
 		if workspace.Map:FindFirstChild("Players") then
 			if workspace.Map.Players:FindFirstChild("Enemy") then -- Enemy ESP
@@ -236,16 +253,19 @@ if workspace:FindFirstChild("Map") then
 					NameStroke.Thickness = 3
 				end
 			end
+			end
 
 		else
-
+		
+		if workspace.Map:FindFirstChild("Players") then
 			if workspace.Map.Players:FindFirstChild("Enemy") then
 				if workspace.Map.Players.Enemy:FindFirstChild("Highlight") then
 					workspace.Map.Players.Enemy.Highlight:Destroy()
 				end			
 			end
-			end
-		end	
+		end
+		end
+		
 		if PlayerESP == true then
 		if workspace.Map:FindFirstChild("Players") then
 			for i, player in pairs(workspace.Map.Players:GetChildren()) do -- Player ESP
@@ -279,18 +299,23 @@ if workspace:FindFirstChild("Map") then
 					end
 					end
 				end
+				end
 
 		else
-
+		
+		if workspace.Map:FindFirstChild("Players") then
 			for i, player in pairs(workspace.Map.Players:GetChildren()) do
+			if player:FindFirstChild("HumanoidRootPart") then
 				if player:FindFirstChild("Highlight") then
 					if not player.Name == "Enemy" then
 						player.Highlight:Destroy()						
 					end
-				end			
+				end		
 			end
 			end
-		end	
+		end
+		end
+	
 		if ExitsESP == true then
 		if workspace.Map[map]:FindFirstChild("WinPath") then
 			for i, exit in pairs(workspace.Map[map].WinPath:GetChildren()) do -- Exits ESP
@@ -323,16 +348,18 @@ if workspace:FindFirstChild("Map") then
 					NameStroke.Thickness = 3
 				end
 			end
+			end
 
 		else
-
+		
+		if workspace.Map[map]:FindFirstChild("WinPath") then
 			for i, exit in pairs(workspace.Map[map].WinPath:GetChildren()) do
 				if exit:FindFirstChild("Highlight") then
 					exit.Highlight:Destroy()
 					exit.Base.BillboardGui:Destroy()
 				end
 			end
-		end
+			end
 	end
 	end
 	end
