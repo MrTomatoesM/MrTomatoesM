@@ -8,7 +8,7 @@ EnemyESP = true						InteractsESP = false
 -------------------------------->> Code <<--------------------------------
 ----->> Do not edit below this line unless you know what you're doing <<-----
 
-while task.wait() do -- ESP Loop
+while task.wait(1) do -- ESP Loop
 
 if workspace:FindFirstChild("Map") then
 
