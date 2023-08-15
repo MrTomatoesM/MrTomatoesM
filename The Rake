@@ -1,51 +1,30 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = OrionLib:MakeWindow({Name = "The Rake", HidePremium = false, SaveConfig = true, ConfigFolder = "The Rake"})
+local Window = Library.CreateLib("The Rake", "BloodTheme")
 
 --Tabs
-local MainTab = Window:MakeTab({
-	Name = "Main",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
+local MainTab = Window:NewTab("Main")
 
 --Sections
-local MainSection = MainTab:AddSection({
-	Name = "Main"
-})
+local MainSection = MainTab:NewSection("Main")
 
 --Buttons
-MainTab:AddButton({
-	Name = "Infinite Yield",
-	Callback = function()
-	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Infinite%20Yield.txt"))()
-  	end    
-})
+MainSection:NewButton("Infinite Yield", "", function()
+loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Infinite%20Yield.txt"))()
+end)
 
-MainTab:AddButton({
-	Name = "Keyboard",
-	Callback = function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-  	end    
-})
+MainSection:NewButton("Keyboard", "", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+end)
 
-MainTab:AddButton({
-	Name = "Esp",
-	Callback = function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/TheRake.lua"))()
-  	end    
-})
+MainSection:NewButton("Esp", "", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/TheRake.lua"))()
+end)
 
-MainTab:AddButton({
-	Name = "Aurora",
-	Callback = function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-  	end    
-})
+MainSection:NewButton("Aurora", "", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+end)
 
-MainTab:AddButton({
-	Name = "Unlock Chat",
-	Callback = function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ScriptsLynX/LynX/main/KeySystem/Loader.lua"))()
-  	end    
-})
+MainSection:NewButton("Unlock Chat", "", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ScriptsLynX/LynX/main/KeySystem/Loader.lua"))()
+end)
