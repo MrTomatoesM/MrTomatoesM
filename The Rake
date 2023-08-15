@@ -9,12 +9,20 @@ local MainTab = Window:NewTab("Main")
 local MainSection = MainTab:NewSection("Main")
 
 --Buttons
+MainSection:NewButton("Infinite Yield", "", function()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Infinite%20Yield"), true))()
+end)
+
 MainSection:NewButton("Keyboard", "", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 end)
 
 MainSection:NewButton("Esp", "", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemastered/main/TheRake.lua"))()
+end)
+
+MainSection:NewButton("Infinite Stamina", "", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/The%20Rake%20Infinite%20Stamina"))()
 end)
 
 MainSection:NewButton("Aurora", "", function()
