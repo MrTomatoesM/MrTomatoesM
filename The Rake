@@ -25,7 +25,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoe
 end)
 
 MainSection:NewButton("Aurora", "", function()
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/The%20Rake%20Aurora"), true))()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/990864d1573aca7fdf421cb8ce300f56.lua"))()
 end)
 
 MainSection:NewButton("Unlock Chat", "", function()
