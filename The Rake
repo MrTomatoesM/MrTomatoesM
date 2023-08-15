@@ -9,10 +9,6 @@ local MainTab = Window:NewTab("Main")
 local MainSection = MainTab:NewSection("Main")
 
 --Buttons
-MainSection:NewButton("Infinite Yield", "", function()
-loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Infinite%20Yield.txt"))()
-end)
-
 MainSection:NewButton("Keyboard", "", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 end)
@@ -22,7 +18,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/irlng/TheRakeRemaster
 end)
 
 MainSection:NewButton("Aurora", "", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/990864d1573aca7fdf421cb8ce300f56.lua"))()
 end)
 
 MainSection:NewButton("Unlock Chat", "", function()
