@@ -1,15 +1,45 @@
-local player = game:GetService("Players").LocalPlayer
-local humanRoot = player.Character.HumanoidRootPart
+-- Instances:
 
-local map
-local mapKill
+local ObbyElevator = Instance.new("ScreenGui")
+local WinButton = Instance.new("ImageButton")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 
-for num = 1, 30 do
-if workspace:FindFirstChild("map"..num) then
-map = workspace:FindFirstChild("map"..num)
-end
-end
+--Properties:
 
-if map then
-firetouchinterest(humanRoot, map.MoneyModel.MoneyPart, 1)
-end
+ObbyElevator.Name = "Obby Elevator"
+ObbyElevator.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ObbyElevator.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+WinButton.Name = "WinButton"
+WinButton.Parent = ObbyElevator
+WinButton.Draggable = true
+WinButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+WinButton.BackgroundTransparency = 1.000
+WinButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+WinButton.BorderSizePixel = 0
+WinButton.Position = UDim2.new(0.897782445, 0, 0.18875502, 0)
+WinButton.Size = UDim2.new(0.0355392173, 0, 0.0602409653, 0)
+WinButton.Image = "http://www.roblox.com/asset/?id=953596610"
+
+UIAspectRatioConstraint.Parent = WinButton
+UIAspectRatioConstraint.AspectRatio = 0.967
+
+--Functions
+
+WinButton.MouseButton1Click:Connect(function()
+	local player = game:GetService("Players").LocalPlayer
+	local humanRoot = player.Character.HumanoidRootPart
+
+	local map
+	local mapKill
+
+	for num = 1, 30 do
+		if workspace:FindFirstChild("map"..num) then
+			map = workspace:FindFirstChild("map"..num)
+		end
+	end
+
+	if map then
+		firetouchinterest(humanRoot, map.MoneyModel.MoneyPart, 1)
+	end
+end)
