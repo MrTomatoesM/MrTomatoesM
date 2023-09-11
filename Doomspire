@@ -6,21 +6,40 @@ local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 local TextLabel = Instance.new("TextLabel")
 local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
 local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local UICorner = Instance.new("UICorner")
 local Green = Instance.new("TextButton")
 local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
 local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
+local UICorner_2 = Instance.new("UICorner")
 local Red = Instance.new("TextButton")
 local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
 local UITextSizeConstraint_3 = Instance.new("UITextSizeConstraint")
+local UICorner_3 = Instance.new("UICorner")
 local Yellow = Instance.new("TextButton")
 local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
 local UITextSizeConstraint_4 = Instance.new("UITextSizeConstraint")
+local UICorner_4 = Instance.new("UICorner")
 local Blue = Instance.new("TextButton")
 local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
 local UITextSizeConstraint_5 = Instance.new("UITextSizeConstraint")
-local Open = Instance.new("TextButton")
-local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
+local UICorner_5 = Instance.new("UICorner")
+local UICorner_6 = Instance.new("UICorner")
+local OpenFrame = Instance.new("Frame")
+local UICorner_7 = Instance.new("UICorner")
+local OpenButton = Instance.new("TextButton")
 local UITextSizeConstraint_6 = Instance.new("UITextSizeConstraint")
+local UICorner_8 = Instance.new("UICorner")
+local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_8 = Instance.new("UIAspectRatioConstraint")
+
+local stroke = Instance.new("UIStroke")
+local stroke_2 = Instance.new("UIStroke")
+local stroke_3 = Instance.new("UIStroke")
+local stroke_4 = Instance.new("UIStroke")
+local stroke_5 = Instance.new("UIStroke")
+local stroke_6 = Instance.new("UIStroke")
+local stroke_7 = Instance.new("UIStroke")
+local stroke_8 = Instance.new("UIStroke")
 
 --Properties:
 
@@ -40,6 +59,9 @@ Gui.Visible = false
 
 UIAspectRatioConstraint.Parent = Gui
 UIAspectRatioConstraint.AspectRatio = 1.521
+stroke.Parent = Gui
+stroke.Color = Color3.fromRGB(255, 0, 0)
+stroke.Thickness = 3
 
 TextLabel.Parent = Gui
 TextLabel.BackgroundColor3 = Color3.fromRGB(72, 0, 0)
@@ -58,6 +80,13 @@ UIAspectRatioConstraint_2.AspectRatio = 7.714
 
 UITextSizeConstraint.Parent = TextLabel
 UITextSizeConstraint.MaxTextSize = 42
+
+UICorner.CornerRadius = UDim.new(0, 10)
+UICorner.Parent = TextLabel
+
+stroke_6.Parent = TextLabel
+stroke_6.Color = Color3.fromRGB(0, 0, 0)
+stroke_6.Thickness = 3
 
 Green.Name = "Green"
 Green.Parent = Gui
@@ -79,6 +108,13 @@ UIAspectRatioConstraint_3.AspectRatio = 1.179
 UITextSizeConstraint_2.Parent = Green
 UITextSizeConstraint_2.MaxTextSize = 29
 
+UICorner_2.CornerRadius = UDim.new(0, 10)
+UICorner_2.Parent = Green
+
+stroke_2.Parent = Green
+stroke_2.Color = Color3.fromRGB(0, 0, 0)
+stroke_2.Thickness = 3
+
 Red.Name = "Red"
 Red.Parent = Gui
 Red.BackgroundColor3 = Color3.fromRGB(145, 0, 0)
@@ -98,6 +134,13 @@ UIAspectRatioConstraint_4.AspectRatio = 1.179
 
 UITextSizeConstraint_3.Parent = Red
 UITextSizeConstraint_3.MaxTextSize = 47
+
+UICorner_3.CornerRadius = UDim.new(0, 10)
+UICorner_3.Parent = Red
+
+stroke_3.Parent = Red
+stroke_3.Color = Color3.fromRGB(0, 0, 0)
+stroke_3.Thickness = 3
 
 Yellow.Name = "Yellow"
 Yellow.Parent = Gui
@@ -119,6 +162,13 @@ UIAspectRatioConstraint_5.AspectRatio = 1.179
 UITextSizeConstraint_4.Parent = Yellow
 UITextSizeConstraint_4.MaxTextSize = 27
 
+UICorner_4.CornerRadius = UDim.new(0, 10)
+UICorner_4.Parent = Yellow
+
+stroke_4.Parent = Green
+stroke_4.Color = Color3.fromRGB(0, 0, 0)
+stroke_4.Thickness = 3
+
 Blue.Name = "Blue"
 Blue.Parent = Gui
 Blue.BackgroundColor3 = Color3.fromRGB(9, 0, 108)
@@ -139,49 +189,91 @@ UIAspectRatioConstraint_6.AspectRatio = 1.179
 UITextSizeConstraint_5.Parent = Blue
 UITextSizeConstraint_5.MaxTextSize = 41
 
-Open.Name = "Open"
-Open.Parent = Doomspire
-Open.BackgroundColor3 = Color3.fromRGB(76, 0, 0)
-Open.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Open.BorderSizePixel = 0
-Open.Position = UDim2.new(0.901279688, 0, 0.05, 0)
-Open.Size = UDim2.new(0.0886654481, 0, 0.0803212821, 0)
-Open.Font = Enum.Font.SourceSansBold
-Open.Text = "Open"
-Open.TextColor3 = Color3.fromRGB(255, 0, 0)
-Open.TextScaled = true
-Open.TextSize = 14.000
-Open.TextWrapped = true
+UICorner_5.CornerRadius = UDim.new(0, 10)
+UICorner_5.Parent = Blue
 
-UIAspectRatioConstraint_7.Parent = Open
-UIAspectRatioConstraint_7.AspectRatio = 2.425
+UICorner_6.CornerRadius = UDim.new(0, 10)
+UICorner_6.Parent = Gui
 
-UITextSizeConstraint_6.Parent = Open
+stroke_5.Parent = Green
+stroke_5.Color = Color3.fromRGB(0, 0, 0)
+stroke_5.Thickness = 3
+
+OpenFrame.Name = "OpenFrame"
+OpenFrame.Parent = Doomspire
+OpenFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OpenFrame.BackgroundTransparency = 1.000
+OpenFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OpenFrame.BorderSizePixel = 0
+OpenFrame.Position = UDim2.new(0.901000023, 0, 0.226999998, 0)
+OpenFrame.Size = UDim2.new(0.0890000015, 0, 0.0799999982, 0)
+
+UICorner_7.CornerRadius = UDim.new(0, 10)
+UICorner_7.Parent = OpenFrame
+
+stroke_7.Parent = OpenFrame
+stroke_7.Color = Color3.fromRGB(89, 255, 0)
+stroke_7.Thickness = 3
+
+OpenButton.Name = "OpenButton"
+OpenButton.Parent = OpenFrame
+OpenButton.BackgroundColor3 = Color3.fromRGB(15, 100, 0)
+OpenButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OpenButton.BorderSizePixel = 0
+OpenButton.Size = UDim2.new(1, 0, 1, 0)
+OpenButton.Font = Enum.Font.SourceSansBold
+OpenButton.Text = "Open"
+OpenButton.TextColor3 = Color3.fromRGB(47, 255, 0)
+OpenButton.TextScaled = true
+OpenButton.TextSize = 15.000
+OpenButton.TextWrapped = true
+
+UITextSizeConstraint_6.Parent = OpenButton
 UITextSizeConstraint_6.MaxTextSize = 40
+
+UICorner_8.CornerRadius = UDim.new(0, 10)
+UICorner_8.Parent = OpenButton
+
+UIAspectRatioConstraint_7.Parent = OpenButton
+UIAspectRatioConstraint_7.AspectRatio = 2.444
+
+stroke_8.Parent = OpenButton
+stroke_8.Color = Color3.fromRGB(0, 0, 0)
+stroke_8.Thickness = 3
+
+UIAspectRatioConstraint_8.Parent = OpenFrame
+UIAspectRatioConstraint_8.AspectRatio = 2.444
 
 --Functions
 
-Open.MouseButton1Click:Connect(function()
-Gui.Visible = not Gui.Visible
-if Gui.Visible == true then
-   Open.Text = "Close"
-elseif Gui.Visible == false then
-   Open.Text = "Open"
-end
+OpenButton.MouseButton1Click:Connect(function()
+	if OpenButton.Visible == false then
+		Gui.Visible = true
+		OpenButton.Text = "Close"
+		OpenButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+		OpenButton.BackgroundColor3 = Color3.fromRGB(149, 0, 0)
+		stroke_7.Color = Color3.fromRGB(255, 0, 0)
+	elseif OpenButton.Visible == true then
+		Gui.Visible = false
+		OpenButton.Text = "Open"
+		OpenButton.TextColor3 = Color3.fromRGB(89, 255, 0)
+		OpenButton.BackgroundColor3 = Color3.fromRGB(15, 100, 0)
+		stroke_7.Color = Color3.fromRGB(89, 255, 0)
+	end
 end)
 
 Green.MouseButton1Click:Connect(function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.042715072631836, 23.600013732910156, -121.39115142822266)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.042715072631836, 23.600013732910156, -121.39115142822266)
 end)
 
 Red.MouseButton1Click:Connect(function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-128.91641235351562, 23.600032806396484, -6.985227584838867)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-128.91641235351562, 23.600032806396484, -6.985227584838867)
 end)
 
 Blue.MouseButton1Click:Connect(function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2.9803085327148438, 23.600034713745117, 139.19363403320312)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2.9803085327148438, 23.600034713745117, 139.19363403320312)
 end)
 
 Yellow.MouseButton1Click:Connect(function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(128.24581909179688, 23.600011825561523, 6.322104454040527)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(128.24581909179688, 23.600011825561523, 6.322104454040527)
 end)
