@@ -246,14 +246,18 @@ UIAspectRatioConstraint_8.AspectRatio = 2.444
 
 --Functions
 
+local openClose = false
+
 OpenButton.MouseButton1Click:Connect(function()
-	if Gui.Visible == false then
+	if openClose == false then
+                openClose = true
 		Gui.Visible = true
 		OpenButton.Text = "Close"
 		OpenButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 		OpenButton.BackgroundColor3 = Color3.fromRGB(149, 0, 0)
 		stroke_7.Color = Color3.fromRGB(255, 0, 0)
-	elseif Gui.Visible == true then
+	elseif openClose == true then
+                openClose = false
 		Gui.Visible = false
 		OpenButton.Text = "Open"
 		OpenButton.TextColor3 = Color3.fromRGB(89, 255, 0)
