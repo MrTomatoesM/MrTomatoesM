@@ -1,0 +1,187 @@
+-- Instances:
+
+local Doomspire = Instance.new("ScreenGui")
+local Gui = Instance.new("Frame")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local TextLabel = Instance.new("TextLabel")
+local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local Green = Instance.new("TextButton")
+local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
+local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
+local Red = Instance.new("TextButton")
+local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
+local UITextSizeConstraint_3 = Instance.new("UITextSizeConstraint")
+local Yellow = Instance.new("TextButton")
+local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
+local UITextSizeConstraint_4 = Instance.new("UITextSizeConstraint")
+local Blue = Instance.new("TextButton")
+local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
+local UITextSizeConstraint_5 = Instance.new("UITextSizeConstraint")
+local Open = Instance.new("TextButton")
+local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
+local UITextSizeConstraint_6 = Instance.new("UITextSizeConstraint")
+
+--Properties:
+
+Doomspire.Name = "Doomspire"
+Doomspire.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Doomspire.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Doomspire.ResetOnSpawn = false
+
+Gui.Name = "Gui"
+Gui.Parent = Doomspire
+Gui.BackgroundColor3 = Color3.fromRGB(111, 0, 0)
+Gui.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Gui.BorderSizePixel = 0
+Gui.Position = UDim2.new(0.351919562, 0, 0.285140574, 0)
+Gui.Size = UDim2.new(0.296160877, 0, 0.427710831, 0)
+Gui.Visible = false
+
+UIAspectRatioConstraint.Parent = Gui
+UIAspectRatioConstraint.AspectRatio = 1.521
+
+TextLabel.Parent = Gui
+TextLabel.BackgroundColor3 = Color3.fromRGB(72, 0, 0)
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(1, 0, 0.197183102, 0)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "Doomspire"
+TextLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+UIAspectRatioConstraint_2.Parent = TextLabel
+UIAspectRatioConstraint_2.AspectRatio = 7.714
+
+UITextSizeConstraint.Parent = TextLabel
+UITextSizeConstraint.MaxTextSize = 42
+
+Green.Name = "Green"
+Green.Parent = Gui
+Green.BackgroundColor3 = Color3.fromRGB(57, 107, 0)
+Green.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Green.BorderSizePixel = 0
+Green.Position = UDim2.new(0.157407403, 0, 0.244131461, 0)
+Green.Size = UDim2.new(0.203703701, 0, 0.262910783, 0)
+Green.Font = Enum.Font.SourceSansBold
+Green.Text = "Green"
+Green.TextColor3 = Color3.fromRGB(102, 255, 0)
+Green.TextScaled = true
+Green.TextSize = 14.000
+Green.TextWrapped = true
+
+UIAspectRatioConstraint_3.Parent = Green
+UIAspectRatioConstraint_3.AspectRatio = 1.179
+
+UITextSizeConstraint_2.Parent = Green
+UITextSizeConstraint_2.MaxTextSize = 29
+
+Red.Name = "Red"
+Red.Parent = Gui
+Red.BackgroundColor3 = Color3.fromRGB(145, 0, 0)
+Red.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Red.BorderSizePixel = 0
+Red.Position = UDim2.new(0.629629612, 0, 0.244131461, 0)
+Red.Size = UDim2.new(0.203703701, 0, 0.262910783, 0)
+Red.Font = Enum.Font.SourceSansBold
+Red.Text = "Red"
+Red.TextColor3 = Color3.fromRGB(255, 0, 0)
+Red.TextScaled = true
+Red.TextSize = 14.000
+Red.TextWrapped = true
+
+UIAspectRatioConstraint_4.Parent = Red
+UIAspectRatioConstraint_4.AspectRatio = 1.179
+
+UITextSizeConstraint_3.Parent = Red
+UITextSizeConstraint_3.MaxTextSize = 47
+
+Yellow.Name = "Yellow"
+Yellow.Parent = Gui
+Yellow.BackgroundColor3 = Color3.fromRGB(111, 107, 0)
+Yellow.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Yellow.BorderSizePixel = 0
+Yellow.Position = UDim2.new(0.629629612, 0, 0.610328615, 0)
+Yellow.Size = UDim2.new(0.203703701, 0, 0.262910783, 0)
+Yellow.Font = Enum.Font.SourceSansBold
+Yellow.Text = "Yellow"
+Yellow.TextColor3 = Color3.fromRGB(255, 247, 0)
+Yellow.TextScaled = true
+Yellow.TextSize = 14.000
+Yellow.TextWrapped = true
+
+UIAspectRatioConstraint_5.Parent = Yellow
+UIAspectRatioConstraint_5.AspectRatio = 1.179
+
+UITextSizeConstraint_4.Parent = Yellow
+UITextSizeConstraint_4.MaxTextSize = 27
+
+Blue.Name = "Blue"
+Blue.Parent = Gui
+Blue.BackgroundColor3 = Color3.fromRGB(9, 0, 108)
+Blue.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Blue.BorderSizePixel = 0
+Blue.Position = UDim2.new(0.157407403, 0, 0.610328615, 0)
+Blue.Size = UDim2.new(0.203703701, 0, 0.262910783, 0)
+Blue.Font = Enum.Font.SourceSansBold
+Blue.Text = "Blue"
+Blue.TextColor3 = Color3.fromRGB(0, 38, 255)
+Blue.TextScaled = true
+Blue.TextSize = 14.000
+Blue.TextWrapped = true
+
+UIAspectRatioConstraint_6.Parent = Blue
+UIAspectRatioConstraint_6.AspectRatio = 1.179
+
+UITextSizeConstraint_5.Parent = Blue
+UITextSizeConstraint_5.MaxTextSize = 41
+
+Open.Name = "Open"
+Open.Parent = Doomspire
+Open.BackgroundColor3 = Color3.fromRGB(76, 0, 0)
+Open.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Open.BorderSizePixel = 0
+Open.Position = UDim2.new(0.901279688, 0, 0.05, 0)
+Open.Size = UDim2.new(0.0886654481, 0, 0.0803212821, 0)
+Open.Font = Enum.Font.SourceSansBold
+Open.Text = "Open"
+Open.TextColor3 = Color3.fromRGB(255, 0, 0)
+Open.TextScaled = true
+Open.TextSize = 14.000
+Open.TextWrapped = true
+
+UIAspectRatioConstraint_7.Parent = Open
+UIAspectRatioConstraint_7.AspectRatio = 2.425
+
+UITextSizeConstraint_6.Parent = Open
+UITextSizeConstraint_6.MaxTextSize = 40
+
+--Functions
+
+Open.MouseButton1Click:Connect(function()
+Gui.Visible = not Gui.Visible
+if Gui.Visible == true then
+   Open.Text = "Close"
+elseif Gui.Visible == false then
+   Open.Text = "Open"
+end
+end)
+
+Green.MouseButton1Click:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.042715072631836, 23.600013732910156, -121.39115142822266)
+end)
+
+Red.MouseButton1Click:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-128.91641235351562, 23.600032806396484, -6.985227584838867)
+end)
+
+Blue.MouseButton1Click:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2.9803085327148438, 23.600034713745117, 139.19363403320312)
+end)
+
+Yellow.MouseButton1Click:Connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(128.24581909179688, 23.600011825561523, 6.322104454040527)
+end)
