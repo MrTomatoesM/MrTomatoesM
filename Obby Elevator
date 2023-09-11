@@ -1,0 +1,15 @@
+local player = game:GetService("Players").LocalPlayer
+local humanRoot = player.Character.HumanoidRootPart
+
+local map
+local mapKill
+
+for num = 1, 30 do
+if workspace:FindFirstChild("map"..num) then
+map = workspace:FindFirstChild("map"..num)
+end
+end
+
+if map then
+firetouchinterest(humanRoot, map.MoneyModel.MoneyPart, 1)
+end
