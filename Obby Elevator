@@ -9,6 +9,7 @@ local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 ObbyElevator.Name = "Obby Elevator"
 ObbyElevator.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ObbyElevator.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ObbyElevator.ResetOnSpawn = false
 
 WinButton.Name = "WinButton"
 WinButton.Parent = ObbyElevator
