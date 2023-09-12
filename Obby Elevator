@@ -50,7 +50,7 @@ local function win()
 	end
 
 	if map then
-		firetouchinterest(humanRoot, map.MoneyModel.MoneyPart, 1)
+		firetouchinterest(humanRoot, map.MoneyModel.MoneyPart, 0)
 	end
 end
 
