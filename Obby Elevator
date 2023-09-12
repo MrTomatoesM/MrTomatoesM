@@ -9,11 +9,9 @@ local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 ObbyElevator.Name = "Obby Elevator"
 ObbyElevator.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ObbyElevator.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ObbyElevator.ResetOnSpawn = false
 
 WinButton.Name = "WinButton"
 WinButton.Parent = ObbyElevator
-WinButton.Draggable = true
 WinButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 WinButton.BackgroundTransparency = 1.000
 WinButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -27,7 +25,18 @@ UIAspectRatioConstraint.AspectRatio = 0.967
 
 --Functions
 
-WinButton.MouseButton1Click:Connect(function()
+local player = game:GetService("Players").LocalPlayer
+local UIS = game:GetService("UserInputService")
+local char = player.Character or player.CharacterAdded:Wait()
+local humanRoot = char:WaitForChild("HumanoidRootPart")
+local button = script.Parent
+
+local dragToggle
+local dragStart
+local startPos
+local canClick
+
+local function win()
 	local player = game:GetService("Players").LocalPlayer
 	local humanRoot = player.Character.HumanoidRootPart
 
@@ -42,5 +51,43 @@ WinButton.MouseButton1Click:Connect(function()
 
 	if map then
 		firetouchinterest(humanRoot, map.MoneyModel.MoneyPart, 1)
+	end
+end
+
+canClick = WinButton.MouseButton1Click:Connect(win)
+
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	button.Position = position
+end
+
+canClick = button.MouseButton1Click:Connect(function()
+	humanRoot.CFrame = CFrame.new(0, 5, 0)
+end)
+
+button.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragToggle = true
+		dragStart = input.Position
+		startPos = button.Position
+	end
+end)
+
+button.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragToggle = false
+		if not canClick then
+			canClick = WinButton.MouseButton1Click:Connect(win)
+		end
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
+			if canClick then canClick:Disconnect() canClick = nil end
+		end
 	end
 end)
