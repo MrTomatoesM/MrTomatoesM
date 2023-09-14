@@ -46,7 +46,6 @@ local stroke_8 = Instance.new("UIStroke")
 Doomspire.Name = "Doomspire"
 Doomspire.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Doomspire.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Doomspire.Active = true
 Doomspire.ResetOnSpawn = false
 
 Gui.Name = "Gui"
