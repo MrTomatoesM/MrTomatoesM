@@ -250,12 +250,14 @@ local toggle = false
 
 OpenButton.MouseButton1Click:Connect(function()
 	if toggle == false then
+                toggle = true
 		Gui.Visible = true
 		OpenButton.Text = "Close"
 		OpenButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 		OpenButton.BackgroundColor3 = Color3.fromRGB(149, 0, 0)
 		stroke_7.Color = Color3.fromRGB(255, 0, 0)
 	elseif toggle == true then
+                toggle = false
 		Gui.Visible = false
 		OpenButton.Text = "Open"
 		OpenButton.TextColor3 = Color3.fromRGB(89, 255, 0)
