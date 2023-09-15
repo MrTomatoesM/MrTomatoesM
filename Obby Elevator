@@ -1,48 +1,51 @@
--- Instances:
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local ObbyElevator = Instance.new("ScreenGui")
-local WinButton = Instance.new("ImageButton")
-local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local Window = OrionLib:MakeWindow({Name = "Obby Elevator", HidePremium = false, SaveConfig = true, ConfigFolder = "Obby Elevator"})
 
---Properties:
+--Values
+getgenv().autoLevel = false
+getgenv().autoCoin = false
 
-ObbyElevator.Name = "Obby Elevator"
-ObbyElevator.ResetOnSpawn = false
-ObbyElevator.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ObbyElevator.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+--Tabs
+local MapTab = Window:MakeTab({
+	Name = "Map",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
-WinButton.Name = "WinButton"
-WinButton.Parent = ObbyElevator
-WinButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-WinButton.BackgroundTransparency = 1.000
-WinButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-WinButton.BorderSizePixel = 0
-WinButton.Position = UDim2.new(0.897782445, 0, 0.18875502, 0)
-WinButton.Size = UDim2.new(0.068, 0, 0.116, 0)
-WinButton.Image = "http://www.roblox.com/asset/?id=953596610"
+local LevelTab = Window:MakeTab({
+	Name = "Leveling Up",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
-UIAspectRatioConstraint.Parent = WinButton
-UIAspectRatioConstraint.AspectRatio = 0.967
+local GamePasTab = Window:MakeTab({
+	Name = "GamePasses",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
---Functions
+--Sections
+local MapSection = MapTab:AddSection({
+	Name = "Map"
+})
 
-local player = game:GetService("Players").LocalPlayer
-local UIS = game:GetService("UserInputService")
-local char = player.Character or player.CharacterAdded:Wait()
-local humanRoot = char:WaitForChild("HumanoidRootPart")
-local button = script.Parent
+local LevelSection = LevelTab:AddSection({
+	Name = "Leveling Up"
+})
 
-local dragToggle
-local dragStart
-local startPos
-local canClick
+local GamePasSection = GamePasTab:AddSection({
+	Name = "GamePasses"
+})
 
-local function win()
+--Buttons
+MapTab:AddButton({
+	Name = "Win",
+	Callback = function()
 	local player = game:GetService("Players").LocalPlayer
 	local humanRoot = player.Character.HumanoidRootPart
 
 	local map
-	local mapKill
 
 	for num = 1, 30 do
 		if workspace:FindFirstChild("map"..num) then
@@ -53,38 +56,56 @@ local function win()
 	if map then
 		firetouchinterest(humanRoot, map.MoneyModel.MoneyPart, 0)
 	end
-end
+  	end    
+})
 
-local function updateInput(input)
-	local delta = input.Position - dragStart
-	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	WinButton.Position = position
-end
+MapTab:AddButton({
+	Name = "Remove Kill Parts",
+	Callback = function()
+	local player = game:GetService("Players").LocalPlayer
+	local humanRoot = player.Character.HumanoidRootPart
 
-canClick = WinButton.MouseButton1Click:Connect(win)
+	local mapKill
 
-WinButton.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		dragToggle = true
-		dragStart = input.Position
-		startPos = WinButton.Position
-	end
-end)
-
-WinButton.InputEnded:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		dragToggle = false
-		if not canClick then
-			canClick = WinButton.MouseButton1Click:Connect(win)
+	for num = 1, 30 do
+		if workspace:FindFirstChild("map"..num.."kill") then
+			mapKill = workspace:FindFirstChild("map"..num.."kill")
 		end
 	end
-end)
 
-UIS.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-		if dragToggle then
-			updateInput(input)
-			if canClick then canClick:Disconnect() canClick = nil end
-		end
+	if mapKill then
+	mapKill:Destroy()
 	end
-end)
+  	end    
+})
+
+GamePasTab:AddButton({
+	Name = "Double Coins",
+	Callback = function()
+	game:GetService("ReplicatedStorage"):WaitForChild("EXP"):WaitForChild("DoubleCoinGamepassBought"):FireServer()
+  	end    
+})
+
+--Toggles
+
+LevelTab:AddToggle({
+	Name = "Auto Level",
+	Default = false,
+	Callback = function(Value)
+	getgenv().autoLevel = Value
+	While getgenv().autoLevel then
+	game:GetService("ReplicatedStorage"):WaitForChild("EXP"):WaitForChild("EXP30"):FireServer()
+	end
+	end    
+})
+
+LevelTab:AddToggle({
+	Name = "Auto Coin",
+	Default = false,
+	Callback = function(Value)
+	getgenv().autoCoin = Value
+	While getgenv().autoCoin then
+	game:GetService("ReplicatedStorage"):WaitForChild("EXP"):WaitForChild("CoinX25"):FireServer()
+	end
+	end    
+})
