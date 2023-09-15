@@ -95,6 +95,7 @@ LevelTab:AddToggle({
 	getgenv().autoLevel = Value
 	While getgenv().autoLevel do
 	game:GetService("ReplicatedStorage"):WaitForChild("EXP"):WaitForChild("EXP30"):FireServer()
+        task.wait()
 	end
 	end    
 })
@@ -106,6 +107,7 @@ LevelTab:AddToggle({
 	getgenv().autoCoin = Value
 	While getgenv().autoCoin do
 	game:GetService("ReplicatedStorage"):WaitForChild("EXP"):WaitForChild("CoinX25"):FireServer()
+        task.wait()
 	end
 	end    
 })
