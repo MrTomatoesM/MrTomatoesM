@@ -1,0 +1,284 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Area 51", HidePremium = false, SaveConfig = true, ConfigFolder = "Area 51"})
+
+--Variables
+getgenv().weaponsTable = {}
+getgenv().chosenWeapon = nil
+getgenv().chosenWeaponP = nil
+getgenv().doorsConnections = {}
+getgenv().doorsToggle = nil
+
+--Functions
+for _, weapon in pairs(workspace.Weapons:GetChildren()) do
+   table.insert(getgenv().weaponsTable, weapon.Name)
+end
+
+--Tabs
+local PlayerTab = Window:MakeTab({
+   Name = "Player",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local EspTab = Window:MakeTab({
+   Name = "Esp",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+local PunchTab = Window:MakeTab({
+   Name = "Punch A Pack",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
+--Sections
+local PlayerSection = PlayerTab:AddSection({
+   Name = "Player"
+})
+
+local EspSection = EspTab:AddSection({
+   Name = "Esp"
+})
+
+local PunchSection = PunchTab:AddSection({
+   Name = "Player"
+})
+
+--Dropdowns
+PlayerTab:AddDropdown({
+   Name = "Choose Weapon",
+   Default = "",
+   Options = getgenv().weaponsTable,
+   Callback = function(Value)
+   getgenv().chosenWeapon = Value
+end
+})
+
+PunchTab:AddDropdown({
+   Name = "Choose Weapon",
+   Default = "",
+   Options = getgenv().weaponsTable,
+   Callback = function(Value)
+   getgenv().chosenWeaponP = Value
+end
+})
+
+--Buttons
+PlayerTab:AddButton({
+Name = "Get Chosen Weapon",
+Callback = function()
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local weapon = workspace.Weapons[getgenv().chosenWeapon]
+firetouchinterest(humRoot, weapon.Hitbox, 0)
+end
+})
+
+PlayerTab:AddButton({
+Name = "Get All Weapons",
+Callback = function()
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local weapons = workspace.Weapons:GetChildren()
+
+for _, weapon in pairs(weapons) do
+firetouchinterest(humRoot, weapon.Hitbox, 0)
+end
+end
+})
+
+PlayerTab:AddButton({
+Name = "Reload",
+Callback = function()
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local ammo = workspace.AREA51.PlantRoom["Box of Shells"].Box
+firetouchinterest(humRoot, ammo, 0)
+firetouchinterest(humRoot, ammo, 1)
+end
+})
+
+PlayerTab:AddToggle({
+	Name = "Auto Open Doors",
+	Default = false,
+	Callback = function(Value)
+	getgenv().doorsToggle = Value
+	if getgenv().doorsToggle == true then
+	local doors = workspace.Doors:GetDescendants()
+for _, door in pairs(doors) do
+if door.Name == "Open" then
+local connection = door.ProximityPrompt.ChildAdded:Connect(function(part)
+if part.Name == "Part" then
+fireproximityprompt(door.ProximityPrompt)
+end
+end)
+getgenv().doorsConnections[door] = connection
+end
+end
+elseif getgenv().doorsToggle == false then
+local doors = workspace.Doors:GetDescendants()
+for _, door in pairs(doors) do
+if door.Name == "Open" then
+if getgenv().doorsConnections[door] then
+getgenv().doorsConnections[door]:Disconnect()
+getgenv().doorsConnections[door] = nil
+end
+end
+end
+	end
+	end    
+})
+
+PlayerTab:AddButton({
+Name = "Wear Armory",
+Callback = function()
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local armory = workspace.AREA51.Amory2Room.Armory.Giver
+firetouchinterest(humRoot, armory, 0)
+end
+})
+
+PlayerTab:AddButton({
+Name = "Do All Missions",
+Callback = function()
+local player = game.Players.LocalPlayer
+
+for _, mission in pairs(player.Backpack.Secrets:GetChildren()) do
+mission.Value = true
+end
+end
+})
+
+PlayerTab:AddButton({
+Name = "Get All Badges",
+Callback = function()
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+for _, badge in pairs(workspace.AREA51.Badges:GetChildren()) do
+firetouchinterest(humRoot, badge.Platform, 0)
+end
+end
+})
+
+PlayerTab:AddButton({
+Name = "Get Code",
+Callback = function()
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local code = workspace.AREA51.CodeModel.Code
+
+code.CFrame = humRoot.CFrame
+end
+})
+
+EspTab:AddButton({
+Name = "Killers",
+Callback = function()
+local killers = workspace.Killers
+
+for _, killer in pairs(killers:GetChildren()) do
+if not killer:FindFirstChild("Highlight") and not killer:FindFirstChild("BillboardGui") then
+local highlight = Instance.new("Highlight")
+highlight.Adornee = killer
+highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+
+-- Instances:
+
+local BillboardGui = Instance.new("BillboardGui")
+local TextLabel = Instance.new("TextLabel")
+
+--Properties:
+
+BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+BillboardGui.Active = true
+BillboardGui.AlwaysOnTop = true
+BillboardGui.Adornee = killer:WaitForChild("Head")
+BillboardGui.LightInfluence = 1.000
+BillboardGui.Size = UDim2.new(6, 0, 1, 0)
+BillboardGui.StudsOffset = Vector3.new(0, 1, 0)
+
+TextLabel.Parent = BillboardGui
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = killer.Name
+TextLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextStrokeTransparency = 0.000
+TextLabel.TextWrapped = true
+
+highlight.Parent = killer
+BillboardGui.Parent = killer
+end
+end
+
+killers.ChildAdded:Connect(function(killer)
+if not killer:FindFirstChild("Highlight") and not killer:FindFirstChild("BillboardGui") then
+local highlight = Instance.new("Highlight")
+highlight.Adornee = killer
+highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+
+-- Instances:
+
+local BillboardGui = Instance.new("BillboardGui")
+local TextLabel = Instance.new("TextLabel")
+
+--Properties:
+
+BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+BillboardGui.Active = true
+BillboardGui.AlwaysOnTop = true
+BillboardGui.Adornee = killer:WaitForChild("Head")
+BillboardGui.LightInfluence = 1.000
+BillboardGui.Size = UDim2.new(6, 0, 1, 0)
+BillboardGui.StudsOffset = Vector3.new(0, 1, 0)
+
+TextLabel.Parent = BillboardGui
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = killer.Name
+TextLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextStrokeTransparency = 0.000
+TextLabel.TextWrapped = true
+
+highlight.Parent = killer
+BillboardGui.Parent = killer
+end
+end)
+end
+})
+
+PlayerTab:AddButton({
+Name = "Zombie Morph",
+Callback = function()
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local zombieM = workspace.AREA51.Outside.Hangar.Right["Zombie Morph"].TheButton
+firetouchinterest(humRoot, zombieM, 0)
+end
+})
+
+PunchTab:AddButton({
+	Name = "Puch Chosen Weapon",
+	Callback = function()
+	game:GetService("ReplicatedStorage"):WaitForChild("Remote Functions"):WaitForChild("PAP Weapon"):InvokeServer(getgenv().chosenWeaponP)
+	game:GetService("ReplicatedStorage"):WaitForChild("Remote Events"):WaitForChild("PAPFinished"):FireServer()
+  	end    
+})
+
+PunchTab:AddButton({
+	Name = "Puch All Weapons",
+	Callback = function()
+	for _, weapon in pairs(getgenv().weaponsTable) do
+	game:GetService("ReplicatedStorage"):WaitForChild("Remote Functions"):WaitForChild("PAP Weapon"):InvokeServer(weapon)
+	game:GetService("ReplicatedStorage"):WaitForChild("Remote Events"):WaitForChild("PAPFinished"):FireServer()
+	end
+  	end    
+})
