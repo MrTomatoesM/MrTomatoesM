@@ -8,6 +8,7 @@ getgenv().chosenWeapon = nil
 getgenv().chosenWeaponP = nil
 getgenv().doorsConnections = {}
 getgenv().doorsToggle = nil
+getgenv().reloadToggle = nil
 
 --Functions
 for _, weapon in pairs(workspace.Weapons:GetChildren()) do
@@ -106,6 +107,9 @@ PlayerTab:AddToggle({
 	local doors = workspace.Doors:GetDescendants()
 for _, door in pairs(doors) do
 if door.Name == "Open" then
+if door.ProximityPrompt:FindFirstChild("Part") then
+fireproximityprompt(door.ProximityPrompt)
+end
 local connection = door.ProximityPrompt.ChildAdded:Connect(function(part)
 if part.Name == "Part" then
 fireproximityprompt(door.ProximityPrompt)
@@ -125,6 +129,21 @@ end
 end
 end
 	end
+	end    
+})
+
+PlayerTab:AddToggle({
+	Name = "Auto Reload",
+	Default = false,
+	Callback = function(Value)
+getgenv().reloadToggle = Value
+while getgenv().reloadToggle do
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local ammo = workspace.AREA51.PlantRoom["Box of Shells"].Box
+firetouchinterest(humRoot, ammo, 0)
+firetouchinterest(humRoot, ammo, 1)
+task.wait()
+end
 	end    
 })
 
