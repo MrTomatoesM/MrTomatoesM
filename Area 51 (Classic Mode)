@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window = OrionLib:MakeWindow({Name = "Area 51", HidePremium = false, SaveConfig = true, ConfigFolder = "Area 51", IntroEnabled = false})
+local Window = OrionLib:MakeWindow({Name = "Classic Mode", HidePremium = false, SaveConfig = true, ConfigFolder = "Classic Mode", IntroEnabled = false})
 
 --Variables
 getgenv().weaponsTable = {}
