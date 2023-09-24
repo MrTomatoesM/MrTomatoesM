@@ -285,7 +285,7 @@ end
 })
 
 PunchTab:AddButton({
-	Name = "Puch Chosen Weapon",
+	Name = "Punch Chosen Weapon",
 	Callback = function()
 	game:GetService("ReplicatedStorage"):WaitForChild("Remote Functions"):WaitForChild("PAP Weapon"):InvokeServer(getgenv().chosenWeaponP)
 	game:GetService("ReplicatedStorage"):WaitForChild("Remote Events"):WaitForChild("PAPFinished"):FireServer()
@@ -293,7 +293,7 @@ PunchTab:AddButton({
 })
 
 PunchTab:AddButton({
-	Name = "Puch All Weapons",
+	Name = "Punch All Weapons",
 	Callback = function()
 	for _, weapon in pairs(getgenv().weaponsTable) do
 	game:GetService("ReplicatedStorage"):WaitForChild("Remote Functions"):WaitForChild("PAP Weapon"):InvokeServer(weapon)
