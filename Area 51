@@ -12,8 +12,10 @@ getgenv().reloadToggle = false
 getgenv().krakenToggle = false
 
 --Functions
+if workspace:FindFirstChild("Weapons") then
 for _, weapon in pairs(workspace.Weapons:GetChildren()) do
    table.insert(getgenv().weaponsTable, weapon.Name)
+end
 end
 
 --Tabs
@@ -82,8 +84,10 @@ PlayerTab:AddButton({
 Name = "Get Chosen Weapon",
 Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+if workspace:FindFirstChild("Weapons") then
 local weapon = workspace.Weapons[getgenv().chosenWeapon]
 firetouchinterest(humRoot, weapon.Hitbox, 0)
+end
 end
 })
 
@@ -91,10 +95,12 @@ PlayerTab:AddButton({
 Name = "Get All Weapons",
 Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+if workspace:FindFirstChild("Weapons") then
 local weapons = workspace.Weapons:GetChildren()
 
 for _, weapon in pairs(weapons) do
 firetouchinterest(humRoot, weapon.Hitbox, 0)
+end
 end
 end
 })
@@ -103,9 +109,11 @@ PlayerTab:AddButton({
 Name = "Reload",
 Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+if workspace.AREA51:FindFirstChild("PlantRoom") then
 local ammo = workspace.AREA51.PlantRoom["Box of Shells"].Box
 firetouchinterest(humRoot, ammo, 0)
 firetouchinterest(humRoot, ammo, 1)
+end
 end
 })
 
@@ -150,10 +158,12 @@ PlayerTab:AddToggle({
 getgenv().reloadToggle = Value
 while getgenv().reloadToggle do
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+if workspace:FindFirstChild("PlantRoom") then
 local ammo = workspace.AREA51.PlantRoom["Box of Shells"].Box
 firetouchinterest(humRoot, ammo, 0)
 firetouchinterest(humRoot, ammo, 1)
 task.wait()
+end
 end
 	end    
 })
@@ -162,8 +172,10 @@ PlayerTab:AddButton({
 Name = "Wear Armory",
 Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+if workspace:FindFirstChild("Amory2Room") then
 local armory = workspace.AREA51.Amory2Room.Armory.Giver
 firetouchinterest(humRoot, armory, 0)
+end
 end
 })
 
@@ -313,8 +325,8 @@ PunchTab:AddButton({
   	end    
 })
 
-PlayerTab:AddToggle({
-	Name = "Auto Reload",
+BossRTab:AddToggle({
+	Name = "Kraken",
 	Default = false,
 	Callback = function(Value)
 	local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
