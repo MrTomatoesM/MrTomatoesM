@@ -28,3 +28,11 @@ MainTab:AddButton({
 	OrionLib:Destroy()
   	end    
 })
+
+MainTab:AddButton({
+	Name = "Endless Mode",
+	Callback = function()
+	loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Area%2051%20(Endless%20Mode)"), true))()
+	OrionLib:Destroy()
+  	end    
+})
