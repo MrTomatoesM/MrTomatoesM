@@ -1,0 +1,30 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Area 51", HidePremium = false, SaveConfig = true, ConfigFolder = "Area 51", IntroEnabled = false})
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local MainSection = MainTab:AddSection({
+	Name = "Main"
+})
+
+--Buttons
+MainTab:AddButton({
+	Name = "Classic Mode",
+	Callback = function()
+	loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Area%2051"), true))()
+	OrionLib:Destroy()
+  	end    
+})
+
+MainTab:AddButton({
+	Name = "Boss Rush",
+	Callback = function()
+	loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Area%2051%20(Boss%20Rush)"), true))()
+	OrionLib:Destroy()
+  	end    
+})
