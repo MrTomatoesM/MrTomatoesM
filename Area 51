@@ -9,13 +9,10 @@ getgenv().chosenWeaponP = nil
 getgenv().doorsConnections = {}
 getgenv().doorsToggle = false
 getgenv().reloadToggle = false
-getgenv().krakenToggle = false
 
 --Functions
-if workspace:FindFirstChild("Weapons") then
 for _, weapon in pairs(workspace.Weapons:GetChildren()) do
    table.insert(getgenv().weaponsTable, weapon.Name)
-end
 end
 
 --Tabs
@@ -37,12 +34,6 @@ local PunchTab = Window:MakeTab({
    PremiumOnly = false
 })
 
-local BossRTab = Window:MakeTab({
-   Name = "Boss Rush",
-   Icon = "rbxassetid://4483345998",
-   PremiumOnly = false
-})
-
 --Sections
 local PlayerSection = PlayerTab:AddSection({
    Name = "Player"
@@ -53,10 +44,6 @@ local EspSection = EspTab:AddSection({
 })
 
 local PunchSection = PunchTab:AddSection({
-   Name = "Player"
-})
-
-local BossRSection = BossRTab:AddSection({
    Name = "Player"
 })
 
@@ -84,10 +71,8 @@ PlayerTab:AddButton({
 Name = "Get Chosen Weapon",
 Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
-if workspace:FindFirstChild("Weapons") then
 local weapon = workspace.Weapons[getgenv().chosenWeapon]
 firetouchinterest(humRoot, weapon.Hitbox, 0)
-end
 end
 })
 
@@ -95,12 +80,10 @@ PlayerTab:AddButton({
 Name = "Get All Weapons",
 Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
-if workspace:FindFirstChild("Weapons") then
 local weapons = workspace.Weapons:GetChildren()
 
 for _, weapon in pairs(weapons) do
 firetouchinterest(humRoot, weapon.Hitbox, 0)
-end
 end
 end
 })
@@ -109,11 +92,9 @@ PlayerTab:AddButton({
 Name = "Reload",
 Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
-if workspace.AREA51:FindFirstChild("PlantRoom") then
 local ammo = workspace.AREA51.PlantRoom["Box of Shells"].Box
 firetouchinterest(humRoot, ammo, 0)
 firetouchinterest(humRoot, ammo, 1)
-end
 end
 })
 
@@ -158,12 +139,10 @@ PlayerTab:AddToggle({
 getgenv().reloadToggle = Value
 while getgenv().reloadToggle do
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
-if workspace:FindFirstChild("PlantRoom") then
 local ammo = workspace.AREA51.PlantRoom["Box of Shells"].Box
 firetouchinterest(humRoot, ammo, 0)
 firetouchinterest(humRoot, ammo, 1)
 task.wait()
-end
 end
 	end    
 })
@@ -172,10 +151,8 @@ PlayerTab:AddButton({
 Name = "Wear Armory",
 Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
-if workspace:FindFirstChild("Amory2Room") then
 local armory = workspace.AREA51.Amory2Room.Armory.Giver
 firetouchinterest(humRoot, armory, 0)
-end
 end
 })
 
@@ -323,19 +300,4 @@ PunchTab:AddButton({
 	game:GetService("ReplicatedStorage"):WaitForChild("Remote Events"):WaitForChild("PAPFinished"):FireServer()
 	end
   	end    
-})
-
-BossRTab:AddToggle({
-	Name = "Kraken",
-	Default = false,
-	Callback = function(Value)
-	local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
-local tpart =workspace.AREA51.Map.Boss.WeakPoint
-
-	getgenv().krakenToggle = Value
-while getgenv().krakenToggle do
-humRoot.CFrame = CFrame.new(tpart.Position) + Vector3.new(0, 3, 0)
-task.wait()
-end
-	end    
 })
