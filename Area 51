@@ -7,8 +7,9 @@ getgenv().weaponsTable = {}
 getgenv().chosenWeapon = nil
 getgenv().chosenWeaponP = nil
 getgenv().doorsConnections = {}
-getgenv().doorsToggle = nil
-getgenv().reloadToggle = nil
+getgenv().doorsToggle = false
+getgenv().reloadToggle = false
+getgenv().krakenToggle = false
 
 --Functions
 for _, weapon in pairs(workspace.Weapons:GetChildren()) do
@@ -34,6 +35,12 @@ local PunchTab = Window:MakeTab({
    PremiumOnly = false
 })
 
+local BossRTab = Window:MakeTab({
+   Name = "Boss Rush",
+   Icon = "rbxassetid://4483345998",
+   PremiumOnly = false
+})
+
 --Sections
 local PlayerSection = PlayerTab:AddSection({
    Name = "Player"
@@ -44,6 +51,10 @@ local EspSection = EspTab:AddSection({
 })
 
 local PunchSection = PunchTab:AddSection({
+   Name = "Player"
+})
+
+local BossRSection = BossRTab:AddSection({
    Name = "Player"
 })
 
@@ -300,4 +311,19 @@ PunchTab:AddButton({
 	game:GetService("ReplicatedStorage"):WaitForChild("Remote Events"):WaitForChild("PAPFinished"):FireServer()
 	end
   	end    
+})
+
+PlayerTab:AddToggle({
+	Name = "Auto Reload",
+	Default = false,
+	Callback = function(Value)
+	local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local tpart =workspace.AREA51.Map.Boss.WeakPoint
+
+	getgenv().krakenToggle = Value
+while getgenv().krakenToggle do
+humRoot.CFrame = CFrame.new(tpart.Position) + Vector3.new(0, 3, 0)
+task.wait()
+end
+	end    
 })
