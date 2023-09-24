@@ -41,7 +41,7 @@ KrakenTab:AddToggle({
 getgenv().autoRtoggle = Value
 while getgenv().autoRtoggle do
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
-local ammo = workspace.AREA51.PlantRoom["Box of Shells"].Box
+local ammo = workspace.AREA51.Map["Box of Shells"].Box
 firetouchinterest(humRoot, ammo, 0)
 firetouchinterest(humRoot, ammo, 1)
 task.wait()
