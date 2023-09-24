@@ -101,6 +101,20 @@ end
 })
 
 PlayerTab:AddButton({
+Name = "Quick Revive",
+Callback = function()
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local lastP = humRoot.CFrame
+local quickR = workspace.Perks["Quick Revive"].Range
+humRoot.CFrame = CFrame.new(quickR.Position) + quickR.CFrame.UpVector * -3
+task.wait(0.3)
+fireproximityprompt(quickR.ProximityPrompt)
+task.wait(0.2)
+humRoot.CFrame = lastP
+end
+})
+
+PlayerTab:AddButton({
 Name = "Wear Armory",
 Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
