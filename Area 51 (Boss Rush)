@@ -3,7 +3,8 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "Boss Rush", HidePremium = false, SaveConfig = true, ConfigFolder = "Boss Rush", IntroEnabled = false})
 
 --Variables
-getgenv().BossRtoggle = false
+getgenv().weakPtoggle = false
+getgenv().autoRtoggle = false
 
 local KrakenTab = Window:MakeTab({
 	Name = "Kraken",
@@ -20,15 +21,30 @@ KrakenTab:AddToggle({
 	Name = "TP To WeakPoint",
 	Default = false,
 	Callback = function(Value)
-	getgenv().BossRtoggle = Value
+	getgenv().weakPtoggle = Value
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
 if workspace.AREA51.Map.Boss:FindFirstChild("WeakPoint") then
 local weakP =workspace.AREA51.Map.Boss.WeakPoint
 
-while getgenv().BossRtoggle do
+while getgenv().weakPtoggle do
 humRoot.CFrame = CFrame.new(weakP.Position) + Vector3.new(0, 3, 0)
 task.wait()
 end
+end
+	end    
+})
+
+KrakenTab:AddToggle({
+	Name = "Auto Reload",
+	Default = false,
+	Callback = function(Value)
+getgenv().autoRtoggle = Value
+while getgenv().autoRtoggle do
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local ammo = workspace.AREA51.PlantRoom["Box of Shells"].Box
+firetouchinterest(humRoot, ammo, 0)
+firetouchinterest(humRoot, ammo, 1)
+task.wait()
 end
 	end    
 })
