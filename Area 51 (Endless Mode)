@@ -106,7 +106,7 @@ Callback = function()
 local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
 local lastP = humRoot.CFrame
 local quickR = workspace.Perks["Quick Revive"].Range
-humRoot.CFrame = CFrame.new(quickR.Position) + quickR.CFrame.UpVector * -3
+humRoot.CFrame = CFrame.new(quickR.Position) + quickR.CFrame.LookVector * 3
 task.wait(0.3)
 fireproximityprompt(quickR.ProximityPrompt)
 task.wait(0.2)
