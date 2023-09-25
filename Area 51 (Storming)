@@ -140,6 +140,7 @@ end
 killers.ChildAdded:Connect(function(soldier)
 if not soldier:FindFirstChild("Highlight") and not soldier:FindFirstChild("BillboardGui") then
 local highlight = Instance.new("Highlight")
+highlight.FillColor = Color3.fromRGP(0, 255, 0)
 highlight.Adornee = soldier
 highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
 
