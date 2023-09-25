@@ -16,23 +16,31 @@ local MainSection = MainTab:AddSection({
 MainTab:AddButton({
 	Name = "Classic Mode",
 	Callback = function()
+OrionLib:Destroy()
 	loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Area%2051"), true))()
-	OrionLib:Destroy()
   	end    
 })
 
 MainTab:AddButton({
 	Name = "Boss Rush",
 	Callback = function()
+OrionLib:Destroy()
 	loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Area%2051%20(Boss%20Rush)"), true))()
-	OrionLib:Destroy()
   	end    
 })
 
 MainTab:AddButton({
 	Name = "Endless Mode",
 	Callback = function()
+OrionLib:Destroy()
 	loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Area%2051%20(Endless%20Mode)"), true))()
-	OrionLib:Destroy()
+  	end    
+})
+
+MainTab:AddButton({
+	Name = "Area 51 Storming",
+	Callback = function()
+OrionLib:Destroy()
+	loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Area%2051%20(Storming)"), true))()
   	end    
 })
