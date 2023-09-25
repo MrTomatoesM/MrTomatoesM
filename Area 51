@@ -17,7 +17,7 @@ MainTab:AddButton({
 	Name = "Classic Mode",
 	Callback = function()
 OrionLib:Destroy()
-	loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Area%2051"), true))()
+	loadstring(game:HttpGet(("https://raw.githubusercontent.com/MrTomatoesM/MrTomatoesM/main/Area%2051%20(Classic%20Mode)"), true))()
   	end    
 })
 
