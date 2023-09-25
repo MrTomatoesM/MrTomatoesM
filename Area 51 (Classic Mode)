@@ -301,3 +301,5 @@ PunchTab:AddButton({
 	end
   	end    
 })
+
+OrionLib:Init()
