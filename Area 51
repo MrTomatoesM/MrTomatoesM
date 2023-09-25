@@ -44,3 +44,5 @@ MainTab:AddButton({
         OrionLib:Destroy()
   	end    
 })
+
+OrionLib:Init()
