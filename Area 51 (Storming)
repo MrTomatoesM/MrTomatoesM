@@ -17,13 +17,13 @@ local PlayerTab = Window:MakeTab({
 	Name = "Player",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
-}
+})
 
 local EspTab = Window:MakeTab({
 	Name = "Esp",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
-}
+})
 
 --Sections
 local PlayerSection = PlayerTab:AddSection({
