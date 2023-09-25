@@ -40,7 +40,7 @@ PlayerTab:AddDropdown({
    Default = "",
    Options = getgenv().weaponsTable,
    Callback = function(Value)
-   chosenWeapon = Value
+   getgenv().chosenWeapon = Value
 end
 })
 
