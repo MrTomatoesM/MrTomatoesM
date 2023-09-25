@@ -265,3 +265,5 @@ end
 end)
 end
 })
+
+OrionLib:Init()
