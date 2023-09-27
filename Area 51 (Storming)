@@ -91,6 +91,16 @@ end
 	end    
 })
 
+PlayerTab:AddButton({
+Name = "Get Code",
+Callback = function()
+local humRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+local code = workspace.AREA51.CodeModel.Code
+
+code.CFrame = humRoot.CFrame
+end
+})
+
 EspTab:AddButton({
 Name = "Soldiers",
 Callback = function()
@@ -137,7 +147,7 @@ BillboardGui.Parent = soldier
 end
 end
 
-killers.ChildAdded:Connect(function(soldier)
+soldiers.ChildAdded:Connect(function(soldier)
 if not soldier:FindFirstChild("Highlight") and not soldier:FindFirstChild("BillboardGui") then
 local highlight = Instance.new("Highlight")
 highlight.FillColor = Color3.fromRGP(0, 255, 0)
