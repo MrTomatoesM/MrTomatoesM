@@ -1,13 +1,14 @@
 --Variable
 local lp = game:GetService("Players").LocalPlayer
 local cam = game:GetService("Workspace").CurrentCamera
+local rs = game:GetService("ReplicatedStorage")
 getgenv().map = nil
 
-getgenv().EnemyESP = false
-getgenv().ToolESP = false
-getgenv().PlayerESP = false
-getgenv().TrapsESP = false
-getgenv().ExitsESP = false
+getgenv().EnemyESP = true
+getgenv().ToolESP = true
+getgenv().PlayerESP = true
+getgenv().TrapsESP = true
+getgenv().ExitsESP = true
 
 --Player Esp
 function espP(v)
@@ -62,15 +63,9 @@ function espP(v)
                             end
                         else
                             if getgenv().EnemyESP then
-                                if v.Character:FindFirstChild("Dress") then
-                                    text.Text = "Granny"
-                                    box.Color = Color3.fromRGB(255, 0, 0)
-                                    text.Color = Color3.fromRGB(255, 0, 0)
-                                else
-                                    text.Text = "GrandPa"
-                                    box.Color = Color3.fromRGB(255, 0, 0)
-                                    text.Color = Color3.fromRGB(255, 0, 0)
-                                end
+                                text.Text = rs.Game.Enemy.Character.Value
+                                box.Color = Color3.fromRGB(255, 0, 0)
+                                text.Color = Color3.fromRGB(255, 0, 0)
 
                                 box.Visible = true
                                 text.Visible = true
