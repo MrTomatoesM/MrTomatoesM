@@ -360,17 +360,14 @@ end
 
 --Start Trap Esp
 function startTrap()
-    if
-        workspace:FindFirstChild("Map") and getgenv().map ~= nil and workspace.Map:FindFirstChild(getgenv().map) and
-            workspace.Map[getgenv().map]:FindFirstChild("Traps")
-     then
-        for i, v in pairs(workspace.Map[getgenv().map].Traps:GetChildren()) do
+    if workspace:FindFirstChild("Map") then
+        for i, v in pairs(workspace.Map.Traps:GetChildren()) do
             if v then
                 espTr(v)
             end
         end
 
-        workspace.Map[getgenv().map].Traps.ChildAdded:Connect(
+        workspace.Map.Traps.ChildAdded:Connect(
             function(Trap)
                 if Trap:WaitForChild("Base") then
                     espTr(Trap)
@@ -380,16 +377,15 @@ function startTrap()
     else
         repeat
             task.wait()
-        until workspace:FindFirstChild("Map") and getgenv().map ~= nil and workspace.Map:FindFirstChild(getgenv().map) and
-            workspace.Map[getgenv().map]:FindFirstChild("Traps")
+        until workspace:FindFirstChild("Map")
 
-        for i, v in pairs(workspace.Map[getgenv().map].Traps:GetChildren()) do
+        for i, v in pairs(workspace.Map.Traps:GetChildren()) do
             if v then
                 espTr(v)
             end
         end
 
-        workspace.Map[getgenv().map].Traps.ChildAdded:Connect(
+        workspace.Map.Traps.ChildAdded:Connect(
             function(Trap)
                 if Trap:WaitForChild("Base") then
                     espTr(Trap)
@@ -418,14 +414,13 @@ game:GetService("Players").PlayerAdded:Connect(
 
 --Start Esp
 startTool()
-startTrap()
+print("Done")
 
 --When Map Add
 workspace.ChildAdded:Connect(
     function(v)
         if v.Name == "Map" then
             startTool()
-            startTrap()
         end
     end
 )
