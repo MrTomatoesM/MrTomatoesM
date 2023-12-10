@@ -1,0 +1,410 @@
+--Variable
+local lp = game:GetService("Players").LocalPlayer
+local cam = game:GetService("Workspace").CurrentCamera
+getgenv().map = nil
+
+getgenv().EnemyESP = true
+getgenv().ToolESP = true
+getgenv().PlayerESP = true
+getgenv().TrapsESP = true
+getgenv().ExitsESP = true
+
+--Player Esp
+function espP(v)
+    local box = Drawing.new("Square")
+    box.Visible = false
+    box.Transparency = 1
+    box.Thickness = 1
+    box.Filled = false
+
+    local text = Drawing.new("Text")
+    text.Visible = false
+    text.Transparency = 1
+    text.Font = 2
+    text.Center = true
+    text.OutlineColor = Color3.new(0, 0, 0)
+    text.Size = 15
+    text.Outline = true
+    text.Text = v.Name
+
+    function boxesp()
+        game:GetService("RunService").RenderStepped:Connect(
+            function()
+                if
+                    v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and
+                        v.Character:FindFirstChild("HumanoidRootPart") ~= nil and
+                        v ~= lp and
+                        v.Character.Humanoid.Health > 0
+                 then
+                    local rootPart = v.Character.HumanoidRootPart
+                    local headPart = v.Character.Head
+                    local rootPos, rootVis = cam:worldToViewportPoint(rootPart.Position)
+                    local headPos = cam:worldToViewportPoint(headPart.Position + Vector3.new(0, 0.5, 0))
+                    local legPos = cam:worldToViewportPoint(rootPart.Position - Vector3.new(0, 3, 0))
+
+                    if rootVis then
+                        box.Size = Vector2.new(1000 / rootPos.Z, headPos.Y - legPos.Y)
+                        box.Position = Vector2.new(rootPos.X - box.Size.X / 2, rootPos.Y - box.Size.Y / 2)
+
+                        text.Position = Vector2.new(headPos.X, headPos.Y - 20)
+
+                        box.Visible = true
+                        text.Visible = true
+
+                        if v.Character.Name ~= "Enemy" then
+                        text.Text = v.Name
+                            box.Color = Color3.fromRGB(255, 255, 255)
+                            text.Color = Color3.fromRGB(255, 255, 255)
+                        else
+                        if v.Character:FindFirstChild("Dress") then
+                        text.Text = "Granny"
+                            box.Color = Color3.fromRGB(255, 0, 0)
+                            text.Color = Color3.fromRGB(255, 0, 0)
+                            else
+                            text.Text = "GrandPa"
+                            box.Color = Color3.fromRGB(255, 0, 0)
+                            text.Color = Color3.fromRGB(255, 0, 0)
+                            end
+                        end
+                    else
+                        box.Visible = false
+                        text.Visible = false
+                    end
+                else
+                    box.Visible = false
+                    text.Visible = false
+                end
+            end
+        )
+    end
+
+    coroutine.wrap(boxesp)()
+
+    game:GetService("Players").PlayerRemoving:Connect(
+        function(player)
+            if player == v then
+                box:Remove()
+                text:Remove()
+            end
+        end
+    )
+end
+
+--Tool Esp
+function espT(v)
+    local box = Drawing.new("Square")
+    box.Visible = false
+    box.Transparency = 1
+    box.Thickness = 1
+    box.Filled = false
+
+    local text = Drawing.new("Text")
+    text.Visible = false
+    text.Transparency = 1
+    text.Font = 2
+    text.Center = true
+    text.OutlineColor = Color3.new(0, 0, 0)
+    text.Size = 15
+    text.Outline = true
+    text.Text = v.Name
+
+    function boxesp()
+        game:GetService("RunService").RenderStepped:Connect(
+            function()
+                local handle = v:FindFirstChild("Handle")
+                local handPos, handVis
+                
+                if handle then
+                    handPos, handVis = cam:worldToViewportPoint(handle.Position)
+                end
+
+                if handVis then
+                    box.Size = Vector2.new(10, 10)
+                    box.Position = Vector2.new(handPos.X - box.Size.X / 2, handPos.Y - box.Size.Y / 2)
+
+                    text.Position = Vector2.new(handPos.X, handPos.Y - 20)
+
+                    box.Visible = true
+                    text.Visible = true
+
+                    box.Color = Color3.fromRGB(0, 0, 255)
+                    text.Color = Color3.fromRGB(0, 0, 255)
+                else
+                    box.Visible = false
+                    text.Visible = false
+                end
+            end
+        )
+    end
+
+    coroutine.wrap(boxesp)()
+
+    v.Parent.ChildRemoved:Connect(
+        function(tool)
+            if tool == v then
+                box:Remove()
+                text:Remove()
+            end
+        end
+    )
+
+    v.Parent.Parent.Character.ChildRemoved:Connect(
+        function(tool)
+            if tool == v then
+                box:Remove()
+                text:Remove()
+            end
+        end
+    )
+
+    workspace.ChildRemoved:Connect(
+        function(v)
+            if v.Name == "Map" then
+                box:Remove()
+                text:Remove()
+            end
+        end
+    )
+end
+
+--Trap Esp
+function espTr(v)
+    local box = Drawing.new("Square")
+    box.Visible = false
+    box.Transparency = 1
+    box.Thickness = 1
+    box.Filled = false
+
+    local text = Drawing.new("Text")
+    text.Visible = false
+    text.Transparency = 1
+    text.Font = 2
+    text.Center = true
+    text.OutlineColor = Color3.new(0, 0, 0)
+    text.Size = 15
+    text.Outline = true
+    text.Text = v.Name
+
+    function boxesp()
+        game:GetService("RunService").RenderStepped:Connect(
+            function()
+                local part = v:FindFirstChild("Base")
+                local partPos, partVis
+                
+                if part then
+                    partPos, partVis = cam:worldToViewportPoint(part.Position)
+                end
+
+                if partVis then
+                    box.Size = Vector2.new(10, 10)
+                    box.Position = Vector2.new(partPos.X - box.Size.X / 2, partPos.Y - box.Size.Y / 2)
+
+                    text.Position = Vector2.new(partPos.X, partPos.Y - 20)
+                    
+                    box.Color = Color3.fromRGB(205, 127, 50)
+                    text.Color = Color3.fromRGB(205, 127, 50)
+
+                    box.Visible = true
+                    text.Visible = true
+                else
+                    box.Visible = false
+                    text.Visible = false
+                end
+            end
+        )
+    end
+
+    coroutine.wrap(boxesp)()
+
+    v.Parent.ChildRemoved:Connect(
+        function(trap)
+            if trap == v then
+                box:Remove()
+                text:Remove()
+            end
+        end
+    )
+
+    workspace.ChildRemoved:Connect(
+        function(v)
+            if v.Name == "Map" then
+                box:Remove()
+                text:Remove()
+            end
+        end
+    )
+end
+
+--Update Map
+function updateMap()
+    while task.wait() do
+        if workspace:FindFirstChild("Map") then
+            if workspace.Map:FindFirstChild("House") then
+                getgenv().map = "House"
+            elseif workspace.Map:FindFirstChild("House easy") then
+                getgenv().map = "House easy"
+            elseif workspace.Map:FindFirstChild("House II") then
+                getgenv().map = "House II"
+            elseif workspace.Map:FindFirstChild("House II easy") then
+                getgenv().map = "House II easy"
+            elseif workspace.Map:FindFirstChild("Mansion") then
+                getgenv().map = "Mansion"
+            elseif workspace.Map:FindFirstChild("Mansion easy") then
+                getgenv().map = "Mansion easy"
+            elseif workspace.Map:FindFirstChild("School") then
+                getgenv().map = "School"
+            elseif workspace.Map:FindFirstChild("Ski resort") then
+                getgenv().map = "Ski resort"
+            else
+                getgenv().map = nil
+            end
+        end
+    end
+end
+
+--Start Tool Esp
+function startTool()
+    if
+        workspace:FindFirstChild("Map") and getgenv().map ~= nil and workspace.Map:FindFirstChild(getgenv().map) and
+            workspace.Map[getgenv().map]:FindFirstChild("Tools") and
+            workspace.Map[getgenv().map].Tools:FindFirstChild("Map") and
+            workspace.Map[getgenv().map].Tools:FindFirstChild("Character")
+     then
+     
+        for i, v in pairs(workspace.Map[getgenv().map].Tools.Map:GetChildren()) do
+        if v then
+            espT(v)
+            end
+        end
+
+        for i, v in pairs(workspace.Map[getgenv().map].Tools.Character:GetChildren()) do
+        if v then
+            espT(v)
+            end
+        end
+
+        workspace.Map[getgenv().map].Tools.Map.ChildAdded:Connect(
+            function(Tool)
+                if Tool:WaitForChild("Handle") then
+                    espT(Tool)
+                end
+            end
+        )
+
+        workspace.Map[getgenv().map].Tools.Character.ChildAdded:Connect(
+            function(Tool)
+                if Tool:WaitForChild("Handle") then
+                    espT(Tool)
+                end
+            end
+        )
+    else
+        repeat
+            task.wait()
+        until workspace:FindFirstChild("Map") and getgenv().map ~= nil and workspace.Map:FindFirstChild(getgenv().map) and
+            workspace.Map[getgenv().map]:FindFirstChild("Tools") and
+            workspace.Map[getgenv().map].Tools:FindFirstChild("Map") and
+            workspace.Map[getgenv().map].Tools:FindFirstChild("Character")
+
+        for i, v in pairs(workspace.Map[getgenv().map].Tools.Map:GetChildren()) do
+        if v then
+            espT(v)
+            end
+        end
+
+        for i, v in pairs(workspace.Map[getgenv().map].Tools.Character:GetChildren()) do
+        if v then
+            espT(v)
+            end
+        end
+
+        workspace.Map[getgenv().map].Tools.Map.ChildAdded:Connect(
+            function(Tool)
+                if Tool:WaitForChild("Handle") then
+                    espT(Tool)
+                end
+            end
+        )
+
+        workspace.Map[getgenv().map].Tools.Character.ChildAdded:Connect(
+            function(Tool)
+                if Tool:WaitForChild("Handle") then
+                    espT(Tool)
+                end
+            end
+        )
+    end
+end
+
+--Start Trap Esp
+function startTrap()
+    if
+        workspace:FindFirstChild("Map") and getgenv().map ~= nil and workspace.Map:FindFirstChild(getgenv().map) and
+            workspace.Map[getgenv().map]:FindFirstChild("Traps")
+     then
+     
+        for i, v in pairs(workspace.Map[getgenv().map].Traps:GetChildren()) do
+        if v then
+            espTr(v)
+            end
+        end
+
+        workspace.Map[getgenv().map].Traps.ChildAdded:Connect(
+            function(Trap)
+                if Trap:WaitForChild("Base") then
+                    espTr(Trap)
+                end
+            end
+        )
+    else
+        repeat
+            task.wait()
+        until workspace:FindFirstChild("Map") and getgenv().map ~= nil and workspace.Map:FindFirstChild(getgenv().map) and
+            workspace.Map[getgenv().map]:FindFirstChild("Traps")
+
+        for i, v in pairs(workspace.Map[getgenv().map].Traps:GetChildren()) do
+        if v then
+            espTr(v)
+            end
+        end
+
+        workspace.Map[getgenv().map].Traps.ChildAdded:Connect(
+            function(Trap)
+                if Trap:WaitForChild("Base") then
+                    espTr(Trap)
+                end
+            end
+        )
+    end
+end
+
+--Start Coding
+
+--Start Updating
+coroutine.wrap(updateMap)()
+
+--Start Player Esp
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+    espP(v)
+end
+
+--If Player Joined
+game:GetService("Players").PlayerAdded:Connect(
+    function(player)
+        espP(player)
+    end
+)
+
+--Start Esp
+startTool()
+startTrap()
+
+--When Map Add
+workspace.ChildAdded:Connect(
+    function(v)
+        if v.Name == "Map" then
+            startTool()
+            startTrap()
+        end
+    end
+)
