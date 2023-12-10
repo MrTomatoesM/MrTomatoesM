@@ -414,13 +414,14 @@ game:GetService("Players").PlayerAdded:Connect(
 
 --Start Esp
 startTool()
-print("Done")
+startTrap()
 
 --When Map Add
 workspace.ChildAdded:Connect(
     function(v)
         if v.Name == "Map" then
             startTool()
+            startTrap()
         end
     end
 )
