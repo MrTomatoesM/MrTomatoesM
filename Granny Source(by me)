@@ -360,7 +360,7 @@ end
 
 --Start Trap Esp
 function startTrap()
-    if workspace:FindFirstChild("Map") then
+    if workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("Traps") then
         for i, v in pairs(workspace.Map.Traps:GetChildren()) do
             if v then
                 espTr(v)
@@ -377,7 +377,7 @@ function startTrap()
     else
         repeat
             task.wait()
-        until workspace:FindFirstChild("Map")
+        until workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("Traps")
 
         for i, v in pairs(workspace.Map.Traps:GetChildren()) do
             if v then
