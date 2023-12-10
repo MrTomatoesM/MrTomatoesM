@@ -3,11 +3,11 @@ local lp = game:GetService("Players").LocalPlayer
 local cam = game:GetService("Workspace").CurrentCamera
 getgenv().map = nil
 
-getgenv().EnemyESP = true
-getgenv().ToolESP = true
-getgenv().PlayerESP = true
-getgenv().TrapsESP = true
-getgenv().ExitsESP = true
+getgenv().EnemyESP = false
+getgenv().ToolESP = false
+getgenv().PlayerESP = false
+getgenv().TrapsESP = false
+getgenv().ExitsESP = false
 
 --Player Esp
 function espP(v)
@@ -48,22 +48,35 @@ function espP(v)
 
                         text.Position = Vector2.new(headPos.X, headPos.Y - 20)
 
-                        box.Visible = true
-                        text.Visible = true
-
                         if v.Character.Name ~= "Enemy" then
-                        text.Text = v.Name
-                            box.Color = Color3.fromRGB(255, 255, 255)
-                            text.Color = Color3.fromRGB(255, 255, 255)
-                        else
-                        if v.Character:FindFirstChild("Dress") then
-                        text.Text = "Granny"
-                            box.Color = Color3.fromRGB(255, 0, 0)
-                            text.Color = Color3.fromRGB(255, 0, 0)
+                            if getgenv().PlayerESP then
+                                text.Text = v.Name
+                                box.Color = Color3.fromRGB(255, 255, 255)
+                                text.Color = Color3.fromRGB(255, 255, 255)
+
+                                box.Visible = true
+                                text.Visible = true
                             else
-                            text.Text = "GrandPa"
-                            box.Color = Color3.fromRGB(255, 0, 0)
-                            text.Color = Color3.fromRGB(255, 0, 0)
+                                box.Visible = false
+                                text.Visible = false
+                            end
+                        else
+                            if getgenv().EnemyESP then
+                                if v.Character:FindFirstChild("Dress") then
+                                    text.Text = "Granny"
+                                    box.Color = Color3.fromRGB(255, 0, 0)
+                                    text.Color = Color3.fromRGB(255, 0, 0)
+                                else
+                                    text.Text = "GrandPa"
+                                    box.Color = Color3.fromRGB(255, 0, 0)
+                                    text.Color = Color3.fromRGB(255, 0, 0)
+                                end
+
+                                box.Visible = true
+                                text.Visible = true
+                            else
+                                box.Visible = false
+                                text.Visible = false
                             end
                         end
                     else
@@ -113,7 +126,7 @@ function espT(v)
             function()
                 local handle = v:FindFirstChild("Handle")
                 local handPos, handVis
-                
+
                 if handle then
                     handPos, handVis = cam:worldToViewportPoint(handle.Position)
                 end
@@ -124,8 +137,13 @@ function espT(v)
 
                     text.Position = Vector2.new(handPos.X, handPos.Y - 20)
 
-                    box.Visible = true
-                    text.Visible = true
+                    if getgenv().ToolESP then
+                        box.Visible = true
+                        text.Visible = true
+                    else
+                        box.Visible = false
+                        text.Visible = false
+                    end
 
                     box.Color = Color3.fromRGB(0, 0, 255)
                     text.Color = Color3.fromRGB(0, 0, 255)
@@ -190,7 +208,7 @@ function espTr(v)
             function()
                 local part = v:FindFirstChild("Base")
                 local partPos, partVis
-                
+
                 if part then
                     partPos, partVis = cam:worldToViewportPoint(part.Position)
                 end
@@ -200,12 +218,17 @@ function espTr(v)
                     box.Position = Vector2.new(partPos.X - box.Size.X / 2, partPos.Y - box.Size.Y / 2)
 
                     text.Position = Vector2.new(partPos.X, partPos.Y - 20)
-                    
+
+                    if getgenv().TrapsESP then
+                        box.Visible = true
+                        text.Visible = true
+                    else
+                        box.Visible = false
+                        text.Visible = false
+                    end
+
                     box.Color = Color3.fromRGB(205, 127, 50)
                     text.Color = Color3.fromRGB(205, 127, 50)
-
-                    box.Visible = true
-                    text.Visible = true
                 else
                     box.Visible = false
                     text.Visible = false
@@ -270,16 +293,15 @@ function startTool()
             workspace.Map[getgenv().map].Tools:FindFirstChild("Map") and
             workspace.Map[getgenv().map].Tools:FindFirstChild("Character")
      then
-     
         for i, v in pairs(workspace.Map[getgenv().map].Tools.Map:GetChildren()) do
-        if v then
-            espT(v)
+            if v then
+                espT(v)
             end
         end
 
         for i, v in pairs(workspace.Map[getgenv().map].Tools.Character:GetChildren()) do
-        if v then
-            espT(v)
+            if v then
+                espT(v)
             end
         end
 
@@ -307,14 +329,14 @@ function startTool()
             workspace.Map[getgenv().map].Tools:FindFirstChild("Character")
 
         for i, v in pairs(workspace.Map[getgenv().map].Tools.Map:GetChildren()) do
-        if v then
-            espT(v)
+            if v then
+                espT(v)
             end
         end
 
         for i, v in pairs(workspace.Map[getgenv().map].Tools.Character:GetChildren()) do
-        if v then
-            espT(v)
+            if v then
+                espT(v)
             end
         end
 
@@ -342,10 +364,9 @@ function startTrap()
         workspace:FindFirstChild("Map") and getgenv().map ~= nil and workspace.Map:FindFirstChild(getgenv().map) and
             workspace.Map[getgenv().map]:FindFirstChild("Traps")
      then
-     
         for i, v in pairs(workspace.Map[getgenv().map].Traps:GetChildren()) do
-        if v then
-            espTr(v)
+            if v then
+                espTr(v)
             end
         end
 
@@ -363,8 +384,8 @@ function startTrap()
             workspace.Map[getgenv().map]:FindFirstChild("Traps")
 
         for i, v in pairs(workspace.Map[getgenv().map].Traps:GetChildren()) do
-        if v then
-            espTr(v)
+            if v then
+                espTr(v)
             end
         end
 
