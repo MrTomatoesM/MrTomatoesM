@@ -515,5 +515,7 @@ end
 
 --When Spectator Added
 rs.Game.Spectators.ChildAdded:Connect(function(spec)
+if spec.Name ~= lp.Name then
 createspec(spec)
+end
 end)
