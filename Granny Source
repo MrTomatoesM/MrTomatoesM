@@ -9,7 +9,6 @@ getgenv().ToolESP = true
 getgenv().PlayerESP = true
 getgenv().TrapsESP = true
 getgenv().ExitsESP = true
-getgenv().SpectatorGui = true
 
 --Player Esp
 function espP(v)
@@ -440,7 +439,7 @@ local UISroke = Instance.new("UIStroke")
 Granny.Name = "Granny"
 Granny.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Granny.ResetOnSpawn = false
-Granny.Enabled = false
+Granny.Enabled = true
 
 Spectators.Name = "Spectators"
 Spectators.Parent = Granny
