@@ -493,7 +493,7 @@ playerCl.Visible = true
 playerCl.Parent = Spectators
 
 rs.Game.Spectators.ChildRemoved:Connect(function(spec)
-if spec = v then
+if spec == v then
 playerCl:Destroy()
 end
 end)
