@@ -9,6 +9,7 @@ getgenv().ToolESP = true
 getgenv().PlayerESP = true
 getgenv().TrapsESP = true
 getgenv().ExitsESP = true
+getgenv().SpectatorGui = true
 
 --Player Esp
 function espP(v)
@@ -420,3 +421,94 @@ workspace.ChildAdded:Connect(
         end
     end
 )
+
+--Spectator Gui
+
+-- Instances:
+
+local Granny = Instance.new("ScreenGui")
+local Spectators = Instance.new("ScrollingFrame")
+local UIGridLayout = Instance.new("UIGridLayout")
+local Player = Instance.new("TextLabel")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+local UISroke = Instance.new("UIStroke")
+
+--Properties:
+
+Granny.Name = "Granny"
+Granny.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Granny.ResetOnSpawn = false
+Granny.Enabled = false
+
+Spectators.Name = "Spectators"
+Spectators.Parent = Granny
+Spectators.Active = true
+Spectators.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
+Spectators.BackgroundTransparency = 0.500
+Spectators.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Spectators.BorderSizePixel = 0
+Spectators.Position = UDim2.new(0.882681549, 0, 0, 0)
+Spectators.Size = UDim2.new(0.117318437, 0, 0.341365457, 0)
+Spectators.ScrollBarThickness = 0
+
+UIGridLayout.Parent = Spectators
+UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIGridLayout.CellPadding = UDim2.new(0, 0, 0.00300000003, 0)
+UIGridLayout.CellSize = UDim2.new(1, 0, 0.0299999993, 0)
+
+Player.Name = "Player"
+Player.Parent = Spectators
+Player.Active = true
+Player.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Player.BackgroundTransparency = 0.500
+Player.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Player.BorderSizePixel = 0
+Player.Size = UDim2.new(0, 200, 0, 50)
+Player.Visible = false
+Player.Font = Enum.Font.Unknown
+Player.TextColor3 = Color3.fromRGB(83, 83, 83)
+Player.TextScaled = true
+Player.TextSize = 14.000
+Player.TextWrapped = true
+
+UIAspectRatioConstraint.Parent = Player
+UIAspectRatioConstraint.AspectRatio = 4.217
+
+UITextSizeConstraint.Parent = Player
+UITextSizeConstraint.MaxTextSize = 29
+
+UIAspectRatioConstraint_2.Parent = Spectators
+UIAspectRatioConstraint_2.AspectRatio = 0.741
+
+UISroke.Parent = Player
+UISroke.Color = Color3.fromRGB(36, 36, 36)
+UISroke.Thickness = 2
+
+--Create Spectator Function
+local function createspec(v)
+local playerCl = Player:Clone()
+playerCl.Text = v.Name
+playerCl.Visible = true
+playerCl.Parent = Spectators
+
+rs.Game.Spectators.ChildRemoved:Connect(function(spec)
+if spec = v then
+playerCl:Destroy()
+end
+end)
+
+end
+
+--Spectators
+for _, v in pairs(rs.Game.Spectators:GetChildren()) do
+if v then
+createspec(v)
+end
+end
+
+--When Spectator Added
+rs.Game.Spectators.ChildAdded:Connect(function(spec)
+createspec(spec)
+end)
