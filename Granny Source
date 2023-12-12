@@ -441,12 +441,6 @@ Granny.Name = "Granny"
 Granny.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Granny.ResetOnSpawn = false
 
-spawn(function()
-while task.wait() do
-Granny.Enabled = getgenv().SpectatorGui
-end
-end)
-
 Spectators.Name = "Spectators"
 Spectators.Parent = Granny
 Spectators.Active = true
@@ -457,6 +451,12 @@ Spectators.BorderSizePixel = 0
 Spectators.Position = UDim2.new(0.882681549, 0, 0, 0)
 Spectators.Size = UDim2.new(0.117318437, 0, 0.341365457, 0)
 Spectators.ScrollBarThickness = 0
+
+spawn(function()
+while task.wait() do
+Spectators.Visible = getgenv().SpectatorGui
+end
+end)
 
 UIGridLayout.Parent = Spectators
 UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -508,7 +508,7 @@ end
 
 --Spectators
 for _, v in pairs(rs.Game.Spectators:GetChildren()) do
-if v then
+if v and v.Name ~= lp.Name then
 createspec(v)
 end
 end
