@@ -2,8 +2,8 @@
 local lp = game:GetService("Players").LocalPlayer
 local cam = game:GetService("Workspace").CurrentCamera
 local rs = game:GetService("ReplicatedStorage")
-getgenv().map = nil
 
+getgenv().map = nil
 getgenv().EnemyESP = true
 getgenv().ToolESP = true
 getgenv().PlayerESP = true
@@ -439,7 +439,6 @@ local UISroke = Instance.new("UIStroke")
 Granny.Name = "Granny"
 Granny.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Granny.ResetOnSpawn = false
-Granny.Enabled = true
 
 Spectators.Name = "Spectators"
 Spectators.Parent = Granny
